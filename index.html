@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alexander Printing — Delight, Arkansas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sky: #a8cfe0;
+    --sky-light: #d4eaf5;
+    --sky-pale: #eef6fb;
+    --navy: #1b2e40;
+    --navy-deep: #0f1d2b;
+    --steel: #2f4a5e;
+    --white: #ffffff;
+    --off-white: #f4f8fb;
+    --rule: #8ab8d0;
+    --accent: #2d7da8;
+    --text: #1b2e40;
+    --text-soft: #3a5570;
+    --success: #2a7a4b;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--off-white);
+    color: var(--text);
+    font-family: 'EB Garamond', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.5;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background-color: var(--navy-deep);
+    color: var(--sky-light);
+    text-align: center;
+    padding: 0.55rem 2rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    border-bottom: 3px solid var(--sky);
+  }
+  .masthead a { color: var(--sky); text-decoration: none; }
+  .masthead a:hover { color: var(--white); }
+
+  /* ── NAMEPLATE ── */
+  .nameplate {
+    background: linear-gradient(170deg, var(--navy-deep) 0%, var(--navy) 60%, var(--steel) 100%);
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .nameplate::before {
+    content: '';
+    position: absolute;
+    top: 30%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse, rgba(168,207,224,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .nameplate::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 5px;
+    background: repeating-linear-gradient(90deg, var(--sky) 0, var(--sky) 10px, transparent 10px, transparent 14px);
+  }
+  .ornament {
+    color: var(--sky); font-size: 1.2rem; letter-spacing: 0.5em;
+    display: block; margin-bottom: 1rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.1s;
+  }
+  .nameplate h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(3rem, 8vw, 5.8rem);
+    font-weight: 900; color: var(--white);
+    line-height: 1; letter-spacing: 0.02em;
+    opacity: 0; animation: fadeUp 0.9s ease forwards 0.25s;
+  }
+  .nameplate h1 em { font-style: italic; color: var(--sky); }
+  .rule-group {
+    display: flex; align-items: center; justify-content: center;
+    gap: 1rem; margin: 1.4rem auto;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+  .rule-line { flex: 1; max-width: 160px; height: 1px; background: var(--rule); }
+  .diamond { color: var(--sky); font-size: 1rem; }
+  .tagline {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.3rem); color: var(--sky-light);
+    letter-spacing: 0.04em; margin-bottom: 0.6rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.55s;
+  }
+  .est {
+    font-family: 'Oswald', sans-serif; font-size: 0.72rem;
+    font-weight: 300; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--sky);
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.65s;
+  }
+  .hero-cta {
+    margin-top: 2rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+  .hero-cta a {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase;
+    background: var(--sky); color: var(--navy-deep);
+    padding: 0.75rem 2.5rem; text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    font-weight: 500;
+  }
+  .hero-cta a:hover { background: var(--white); }
+
+  /* ── CENTENNIAL ── */
+  .centennial {
+    background: var(--sky); color: var(--navy-deep);
+    text-align: center; padding: 1rem 2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(0.88rem, 2vw, 1.05rem);
+    letter-spacing: 0.05em; border-bottom: 2px solid var(--accent);
+  }
+  .centennial strong { font-weight: 900; font-size: 1.1em; }
+
+  /* ── INTRO ── */
+  .intro { max-width: 740px; margin: 0 auto; padding: 3.5rem 2rem; text-align: center; }
+  .intro p { font-size: clamp(1.05rem, 2.2vw, 1.22rem); line-height: 1.9; color: var(--text-soft); }
+  .intro p::first-letter {
+    float: left; font-family: 'Playfair Display', serif;
+    font-size: 4.2rem; line-height: 0.78;
+    padding-right: 0.12em; padding-top: 0.08em;
+    color: var(--accent); font-weight: 900;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex; align-items: center; gap: 1.2rem;
+    padding: 0 2rem; max-width: 900px; margin: 0 auto 2.5rem;
+  }
+  .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+  .divider-text {
+    font-family: 'Oswald', sans-serif; font-size: 0.7rem;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--accent); white-space: nowrap;
+  }
+
+  /* ── SERVICES ── */
+  .services-section {
+    background: var(--sky-pale); padding: 3rem 2rem 4rem;
+    border-top: 2px solid var(--sky); border-bottom: 2px solid var(--sky);
+  }
+  .section-heading {
+    text-align: center; font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 700;
+    color: var(--navy); margin-bottom: 0.4rem;
+  }
+  .section-sub {
+    text-align: center; font-family: 'EB Garamond', serif;
+    font-style: italic; font-size: 1.05rem;
+    color: var(--text-soft); margin-bottom: 2.5rem;
+  }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem; max-width: 960px; margin: 0 auto;
+  }
+  .service-card {
+    background: var(--white); border: 1px solid var(--sky);
+    border-top: 4px solid var(--accent); padding: 1.75rem 1.5rem;
+    text-align: center; cursor: pointer;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    text-decoration: none; display: block; color: inherit;
+  }
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 28px rgba(27,46,64,0.15);
+    border-top-color: var(--navy);
+  }
+  .service-icon { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.15rem;
+    font-weight: 700; color: var(--navy); margin-bottom: 0.5rem;
+  }
+  .service-card p { font-size: 0.92rem; line-height: 1.68; color: var(--text-soft); }
+  .card-cta {
+    display: inline-block; margin-top: 0.85rem;
+    font-family: 'Oswald', sans-serif; font-size: 0.65rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); border-bottom: 1px solid var(--sky);
+    padding-bottom: 0.1rem;
+  }
+
+  /* ── PUBLISHING ── */
+  .publishing-section { background: var(--white); border-top: 2px solid var(--sky); border-bottom: 2px solid var(--sky); }
+  .publishing-inner { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
+  .publishing-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3.5vw, 2.1rem); font-weight: 700; color: var(--navy); margin-bottom: 0.5rem;
+  }
+  .pub-rule { display: inline-block; width: 60px; height: 3px; background: var(--sky); margin: 0.9rem auto 1.5rem; }
+  .publishing-inner p { font-size: 1.08rem; line-height: 1.88; color: var(--text-soft); margin-bottom: 0.8rem; }
+
+  /* ── QUOTE SECTION ── */
+  .quote-section-wrap {
+    background: var(--off-white);
+    padding: 4rem 2rem;
+    border-top: 2px solid var(--sky);
+  }
+  .quote-section-wrap .section-heading { margin-bottom: 0.4rem; }
+  .quote-section-wrap .section-sub { margin-bottom: 2.5rem; }
+
+  .calculator-wrap { max-width: 860px; margin: 0 auto; }
+
+  /* STEPS */
+  .steps { display: flex; justify-content: center; gap: 0; margin-bottom: 2.5rem; }
+  .step {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-family: 'Oswald', sans-serif; font-size: 0.72rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--rule); padding: 0.5rem 1rem;
+    border-bottom: 2px solid var(--rule); transition: all 0.3s;
+  }
+  .step.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .step.done { color: var(--success); border-bottom-color: var(--success); }
+  .step-num {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--rule); color: var(--white);
+    font-size: 0.7rem; display: flex; align-items: center; justify-content: center;
+    font-weight: 500; transition: background 0.3s;
+  }
+  .step.active .step-num { background: var(--accent); }
+  .step.done .step-num { background: var(--success); }
+
+  /* PANELS */
+  .panel {
+    display: none; background: var(--white);
+    border: 1px solid var(--sky); border-top: 4px solid var(--accent);
+    padding: 2rem; animation: fadeIn 0.4s ease;
+  }
+  .panel.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .panel-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; }
+  .panel-sub { font-style: italic; font-size: 0.95rem; color: var(--text-soft); margin-bottom: 1.75rem; padding-bottom: 1rem; border-bottom: 1px solid var(--sky-light); }
+
+  /* PRODUCT GRID */
+  .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+  .product-btn {
+    background: var(--off-white); border: 2px solid var(--sky);
+    padding: 1.25rem 1rem; text-align: center; cursor: pointer;
+    transition: all 0.2s; font-family: inherit;
+  }
+  .product-btn:hover, .product-btn.selected { background: var(--sky-pale); border-color: var(--accent); }
+  .product-btn.selected { box-shadow: 0 0 0 2px var(--accent); }
+  .product-icon { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+  .product-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--navy); display: block; }
+  .product-desc { font-size: 0.8rem; color: var(--text-soft); display: block; margin-top: 0.25rem; }
+
+  /* FORM */
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+  .form-row.single { grid-template-columns: 1fr; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label { font-family: 'Oswald', sans-serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--steel); }
+  .form-group select, .form-group input {
+    border: 1px solid var(--sky); background: var(--off-white);
+    padding: 0.65rem 0.9rem; font-family: 'EB Garamond', serif;
+    font-size: 1rem; color: var(--text); appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232d7da8' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 0.8rem center; transition: border-color 0.2s;
+  }
+  .form-group input { background-image: none; }
+  .form-group select:focus, .form-group input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(45,125,168,0.15); }
+
+  /* ESTIMATE */
+  .estimate-box { background: var(--sky-pale); border: 1px solid var(--sky); border-left: 4px solid var(--accent); padding: 1.5rem; margin: 1.5rem 0; display: none; }
+  .estimate-box.visible { display: block; }
+  .estimate-label { font-family: 'Oswald', sans-serif; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+  .estimate-price { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--navy); }
+  .estimate-note { font-style: italic; font-size: 0.88rem; color: var(--text-soft); margin-top: 0.4rem; }
+  .estimate-breakdown { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--sky); font-size: 0.88rem; color: var(--text-soft); display: none; }
+  .estimate-breakdown.show { display: block; }
+  .breakdown-row { display: flex; justify-content: space-between; padding: 0.2rem 0; }
+  .toggle-detail { background: none; border: none; color: var(--accent); font-family: 'EB Garamond', serif; font-size: 0.9rem; cursor: pointer; text-decoration: underline; padding: 0; margin-top: 0.5rem; }
+
+  /* CONTACT */
+  .contact-section { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--sky); }
+  .contact-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 1rem; }
+
+  /* BUTTONS */
+  .btn { font-family: 'Oswald', sans-serif; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.75rem 2rem; cursor: pointer; border: none; transition: all 0.2s; }
+  .btn-primary { background: var(--accent); color: var(--white); }
+  .btn-primary:hover { background: var(--navy); }
+  .btn-secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+  .btn-secondary:hover { background: var(--sky-pale); }
+  .btn-group { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+
+  /* CUSTOM QUOTE */
+  .custom-quote-box { background: var(--navy); color: var(--white); padding: 2rem; text-align: center; margin-bottom: 1.5rem; }
+  .custom-quote-box h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--sky-light); margin-bottom: 0.75rem; }
+  .custom-quote-box p { font-style: italic; color: var(--sky); margin-bottom: 0; font-size: 1rem; }
+
+  /* SUCCESS */
+  .success-msg { display: none; background: #f0faf4; border: 1px solid #a3d9b8; border-left: 4px solid var(--success); padding: 1.5rem; text-align: center; }
+  .success-msg.show { display: block; }
+  .success-msg h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--success); margin-bottom: 0.5rem; }
+  .success-msg p { color: var(--text-soft); font-style: italic; }
+
+  /* FORM DIVIDER */
+  .form-divider { display: flex; align-items: center; gap: 1rem; margin: 1.5rem 0; }
+  .form-divider::before, .form-divider::after { content: ''; flex: 1; height: 1px; background: var(--sky); }
+  .form-divider span { font-family: 'Oswald', sans-serif; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--rule); }
+
+  /* PHONE CTA */
+  .phone-cta-section {
+    background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 100%);
+    color: var(--white); text-align: center; padding: 4.5rem 2rem; position: relative;
+  }
+  .phone-cta-section::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: repeating-linear-gradient(90deg, var(--sky) 0, var(--sky) 10px, transparent 10px, transparent 14px);
+  }
+  .phone-cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 700; color: var(--white); margin-bottom: 1rem; }
+  .phone-cta-section p { font-style: italic; font-size: 1.12rem; color: var(--sky-light); margin-bottom: 2.2rem; max-width: 540px; margin-left: auto; margin-right: auto; }
+  .cta-phone { display: inline-block; font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 4vw, 2.3rem); font-weight: 900; color: var(--sky); text-decoration: none; letter-spacing: 0.04em; border: 2px solid var(--sky); padding: 0.65rem 2.2rem; transition: background 0.2s, color 0.2s; }
+  .cta-phone:hover { background: var(--sky); color: var(--navy-deep); }
+  .cta-label { display: block; font-family: 'Oswald', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--rule); margin-top: 0.8rem; }
+
+  /* FOOTER */
+  footer { background: var(--navy-deep); color: var(--sky-light); text-align: center; padding: 2.5rem 2rem; border-top: 4px solid var(--sky); }
+  footer .footer-name { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+  footer address { font-style: normal; font-size: 0.9rem; line-height: 1.9; color: var(--sky-light); }
+  footer address a { color: var(--sky); text-decoration: none; }
+  footer address a:hover { color: var(--white); }
+  footer .footer-copy { margin-top: 1.5rem; font-size: 0.72rem; color: var(--steel); border-top: 1px solid #1f3348; padding-top: 1rem; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .step span:not(.step-num) { display: none; }
+  }
+  @media (max-width: 400px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  Delight, Arkansas &nbsp;·&nbsp; Est. 1925 &nbsp;·&nbsp; <a href="tel:8703792421">870-379-2421</a>
+</div>
+
+<!-- NAMEPLATE -->
+<header class="nameplate">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><em>Alexander</em> Printing</h1>
+  <div class="rule-group">
+    <div class="rule-line"></div>
+    <span class="diamond">◆</span>
+    <div class="rule-line"></div>
+  </div>
+  <p class="tagline">Crafted with care. Printed with pride.</p>
+  <p class="est">Delight, Arkansas &nbsp;·&nbsp; Established 1925</p>
+  <div class="hero-cta">
+    <a href="#get-a-quote">Get a Quote ↓</a>
+  </div>
+</header>
+
+<!-- CENTENNIAL -->
+<div class="centennial">
+  🎉 &nbsp; <strong>Celebrating 100 Years</strong> of Printing Excellence &nbsp;·&nbsp; 1925 – 2025 &nbsp; 🎉
+</div>
+
+<!-- INTRO -->
+<section class="intro">
+  <p class="reveal">
+    For a century, Alexander Printing has served Delight, Pike County, and communities across Arkansas with quality printing you can hold in your hands. From a crisp business card to a custom self-published paperback, every job is handled with the same dedication that has kept us in business for one hundred years.
+  </p>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section">
+  <div class="divider"><span class="divider-text">What We Print</span></div>
+  <h2 class="section-heading reveal">Our Services</h2>
+  <p class="section-sub reveal">Click any service below to get an instant quote.</p>
+  <div class="services-grid">
+    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('business-cards')">
+      <span class="service-icon">🪪</span>
+      <h3>Business Cards</h3>
+      <p>Classic and custom business cards that make a lasting first impression.</p>
+      <span class="card-cta">Get a Quote →</span>
+    </a>
+    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('rack-cards')">
+      <span class="service-icon">📄</span>
+      <h3>Rack Cards &amp; Flyers</h3>
+      <p>Full-color 4×9 rack cards designed to stand out in any display.</p>
+      <span class="card-cta">Get a Quote →</span>
+    </a>
+    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('envelopes')">
+      <span class="service-icon">✉️</span>
+      <h3>Envelopes &amp; Stationery</h3>
+      <p>Custom-printed envelopes and letterhead for a polished, professional look.</p>
+      <span class="card-cta">Get a Quote →</span>
+    </a>
+    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('books')">
+      <span class="service-icon">📖</span>
+      <h3>Paperback Books</h3>
+      <p>Self-published paperbacks printed locally. No big-press runaround.</p>
+      <span class="card-cta">Get a Quote →</span>
+    </a>
+    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('saddle')">
+      <span class="service-icon">📰</span>
+      <h3>Saddle Stitch</h3>
+      <p>Magazines, booklets, and programs — stitched and ready to distribute.</p>
+      <span class="card-cta">Get a Quote →</span>
+    </a>
+    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('eddm')">
+      <span class="service-icon">📬</span>
+      <h3>EDDM Mailers</h3>
+      <p>Every Door Direct Mail — reach every door in your community.</p>
+      <span class="card-cta">Get a Quote →</span>
+    </a>
+    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('custom')">
+      <span class="service-icon">🖨️</span>
+      <h3>Custom Print</h3>
+      <p>Don't see what you need? We've been solving printing problems for 100 years. Just ask.</p>
+      <span class="card-cta">Send an Inquiry →</span>
+    </a>
+  </div>
+</section>
+
+<!-- PUBLISHING -->
+<section class="publishing-section">
+  <div class="publishing-inner">
+    <div class="divider"><span class="divider-text">Authors &amp; Writers</span></div>
+    <h2 class="reveal">Print Your Book — Locally</h2>
+    <div class="pub-rule"></div>
+    <p class="reveal">Have a story to tell? Alexander Printing specializes in short-run paperback printing for self-published authors. Whether it's a family history, a community memoir, or your first novel — we'll help you hold your book in your hands, printed right here in Delight.</p>
+    <p class="reveal">No big-city middlemen. No minimum orders that break the bank. Just honest printing from a press that's been in Arkansas for a century.</p>
+  </div>
+</section>
+
+<!-- QUOTE CALCULATOR -->
+<section class="quote-section-wrap" id="get-a-quote">
+  <div class="divider"><span class="divider-text">Instant Estimates</span></div>
+  <h2 class="section-heading reveal">Get a Quote</h2>
+  <p class="section-sub reveal">Select a product for an instant estimate — we'll confirm your exact price before any job is started.</p>
+
+  <div class="calculator-wrap">
+    <!-- STEPS -->
+    <div class="steps">
+      <div class="step active" id="step1-ind"><span class="step-num">1</span><span>Product</span></div>
+      <div class="step" id="step2-ind"><span class="step-num">2</span><span>Options</span></div>
+      <div class="step" id="step3-ind"><span class="step-num">3</span><span>Quote</span></div>
+    </div>
+
+    <!-- PANEL 1 -->
+    <div class="panel active" id="panel1">
+      <div class="panel-title">What can we print for you?</div>
+      <div class="panel-sub">Choose a product to get started.</div>
+      <div class="product-grid">
+        <button class="product-btn" onclick="selectProduct('business-cards')">
+          <span class="product-icon">🪪</span>
+          <span class="product-name">Business Cards</span>
+          <span class="product-desc">Standard & premium stocks</span>
+        </button>
+        <button class="product-btn" onclick="selectProduct('rack-cards')">
+          <span class="product-icon">📄</span>
+          <span class="product-name">Rack Cards</span>
+          <span class="product-desc">4×9 full color</span>
+        </button>
+        <button class="product-btn" onclick="selectProduct('envelopes')">
+          <span class="product-icon">✉️</span>
+          <span class="product-name">Envelopes</span>
+          <span class="product-desc">#10, 6¾, A7 & more</span>
+        </button>
+        <button class="product-btn" onclick="selectProduct('books')">
+          <span class="product-icon">📖</span>
+          <span class="product-name">Paperback Books</span>
+          <span class="product-desc">Perfect bound</span>
+        </button>
+        <button class="product-btn" onclick="selectProduct('saddle')">
+          <span class="product-icon">📰</span>
+          <span class="product-name">Saddle Stitch</span>
+          <span class="product-desc">Magazines & booklets</span>
+        </button>
+        <button class="product-btn" onclick="selectProduct('eddm')">
+          <span class="product-icon">📬</span>
+          <span class="product-name">EDDM Mailers</span>
+          <span class="product-desc">Every Door Direct Mail</span>
+        </button>
+        <button class="product-btn" onclick="selectProduct('custom')">
+          <span class="product-icon">🖨️</span>
+          <span class="product-name">Custom Print</span>
+          <span class="product-desc">Something else? Ask us</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- PANEL 2 -->
+    <div class="panel" id="panel2">
+
+      <!-- Business Cards -->
+      <div id="opts-business-cards" class="product-opts" style="display:none">
+        <div class="panel-title">Business Cards</div>
+        <div class="panel-sub">Standard size 3.5×2 inches</div>
+        <div class="form-row">
+          <div class="form-group"><label>Quantity</label>
+            <select id="bc-qty"><option value="100">100</option><option value="250">250</option><option value="500" selected>500</option><option value="1000">1,000</option></select>
+          </div>
+          <div class="form-group"><label>Sides</label>
+            <select id="bc-sides"><option value="1">1-Sided</option><option value="2">2-Sided</option></select>
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Stock</label>
+            <select id="bc-stock"><option value="c1s">C1S (Standard Gloss)</option><option value="linen">Linen (Premium) +$5.00</option></select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rack Cards -->
+      <div id="opts-rack-cards" class="product-opts" style="display:none">
+        <div class="panel-title">Rack Cards</div>
+        <div class="panel-sub">Standard size 4×9 inches</div>
+        <div class="form-row">
+          <div class="form-group"><label>Quantity</label>
+            <select id="rc-qty"><option value="100">100</option><option value="250">250</option><option value="500" selected>500</option><option value="1000">1,000</option></select>
+          </div>
+          <div class="form-group"><label>Sides</label>
+            <select id="rc-sides"><option value="1">1-Sided</option><option value="2">2-Sided</option></select>
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Stock</label>
+            <select id="rc-stock"><option value="c1s">C1S (Standard Gloss)</option><option value="linen">Linen (Premium) +$5.00</option></select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Envelopes -->
+      <div id="opts-envelopes" class="product-opts" style="display:none">
+        <div class="panel-title">Envelopes</div>
+        <div class="panel-sub">Multiple styles and sizes available</div>
+        <div class="form-row">
+          <div class="form-group"><label>Envelope Type</label>
+            <select id="env-type" onchange="updateEnvQty()">
+              <option value="10reg">No. 10 Regular</option>
+              <option value="10rps">No. 10 Regular P&S</option>
+              <option value="10wind">No. 10 Window</option>
+              <option value="10sec">No. 10 Security</option>
+              <option value="10wsec">No. 10 Window Security</option>
+              <option value="10linen">No. 10 Linen</option>
+              <option value="634">6¾</option>
+              <option value="a7">A7</option>
+              <option value="a7plus">A7+</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Print Color</label>
+            <select id="env-color"><option value="bw">Black & White</option><option value="color">Full Color</option></select>
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Quantity</label><select id="env-qty"></select></div>
+        </div>
+      </div>
+
+      <!-- Books -->
+      <div id="opts-books" class="product-opts" style="display:none">
+        <div class="panel-title">Paperback Books</div>
+        <div class="panel-sub">Perfect bound. Estimated pricing — we'll confirm your exact quote by phone.</div>
+        <div class="form-row">
+          <div class="form-group"><label>Final Book Size</label>
+            <select id="bk-size"><option value="5585">5.5 × 8.5</option><option value="69">6 × 9</option><option value="8511">8.5 × 11</option></select>
+          </div>
+          <div class="form-group"><label>Page Count</label>
+            <input type="number" id="bk-pages" value="150" min="8" max="800" step="2">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Quantity</label>
+            <input type="number" id="bk-qty" value="100" min="24" max="5000">
+          </div>
+          <div class="form-group"><label>Interior Paper Stock</label>
+            <select id="bk-stock">
+              <option value="40">40# White</option>
+              <option value="50">50# White</option>
+              <option value="60" selected>60# White</option>
+              <option value="60ivory">60# Ivory/Cream</option>
+              <option value="80">80# Semi Gloss</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Cover Coating</label>
+            <select id="bk-cover"><option value="c1s">C1S (Coated Outside)</option><option value="c2s">C2S (Coated Both Sides)</option></select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Saddle Stitch -->
+      <div id="opts-saddle" class="product-opts" style="display:none">
+        <div class="panel-title">Saddle Stitch</div>
+        <div class="panel-sub">Magazines & booklets. Estimated pricing — we'll confirm your exact quote by phone.</div>
+        <div class="form-row">
+          <div class="form-group"><label>Finished Size</label>
+            <select id="ss-size"><option value="5585">5.5 × 8.5</option><option value="8511">8.5 × 11</option></select>
+          </div>
+          <div class="form-group"><label>Page Count</label>
+            <input type="number" id="ss-pages" value="20" min="8" max="200" step="4">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Quantity</label>
+            <input type="number" id="ss-qty" value="100" min="10" max="5000">
+          </div>
+          <div class="form-group"><label>Interior Stock</label>
+            <select id="ss-stock">
+              <option value="40">40# White</option>
+              <option value="50">50# White</option>
+              <option value="60" selected>60# White</option>
+              <option value="60ivory">60# Ivory/Cream</option>
+              <option value="80">80# Semi Gloss</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Cover Stock</label>
+            <select id="ss-cover"><option value="80">80# Semi Gloss</option><option value="c1s">C1S</option></select>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDDM -->
+      <div id="opts-eddm" class="product-opts" style="display:none">
+        <div class="panel-title">EDDM Mailers</div>
+        <div class="panel-sub">Every Door Direct Mail — custom quoted per job.</div>
+        <div class="custom-quote-box">
+          <h3>Custom Quote Required</h3>
+          <p>EDDM pricing depends on carrier routes, quantity, and piece size. Fill out your contact info and we'll get back to you promptly.</p>
+        </div>
+      </div>
+
+      <!-- Custom Print -->
+      <div id="opts-custom" class="product-opts" style="display:none">
+        <div class="panel-title">Custom Print Inquiry</div>
+        <div class="panel-sub">Tell us what you need and we'll get back to you with a quote.</div>
+        <div class="custom-quote-box">
+          <h3>Let's Talk About Your Project</h3>
+          <p>We've been solving printing problems for 100 years. Whatever you need, chances are we can help.</p>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Describe Your Project</label>
+            <input type="text" id="custom-desc" placeholder="e.g. 500 door hangers, 2-sided color, 4x11...">
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="goBack()">← Back</button>
+        <button class="btn btn-primary" id="calc-btn" onclick="calculateQuote()">Calculate Estimate →</button>
+      </div>
+    </div>
+
+    <!-- PANEL 3 -->
+    <div class="panel" id="panel3">
+      <div class="panel-title">Your Estimate</div>
+      <div class="panel-sub">Prices are estimates. We'll confirm your exact quote before any job is started.</div>
+
+      <div class="estimate-box" id="estimate-box">
+        <div class="estimate-label">Estimated Price</div>
+        <div class="estimate-price" id="estimate-price">—</div>
+        <div class="estimate-note" id="estimate-note"></div>
+        <button class="toggle-detail" onclick="toggleBreakdown()" id="toggle-btn" style="display:none">Show cost details ▼</button>
+        <div class="estimate-breakdown" id="breakdown"></div>
+      </div>
+
+      <div class="form-divider"><span>Send Us Your Request</span></div>
+
+      <form id="quote-form" action="https://formspree.io/f/xkovyekk" method="POST">
+        <input type="hidden" name="Product" id="hid-product">
+        <input type="hidden" name="Specifications" id="hid-specs">
+        <input type="hidden" name="Estimate" id="hid-estimate">
+        <div class="form-row">
+          <div class="form-group"><label>Your Name *</label><input type="text" name="Name" required placeholder="Full name"></div>
+          <div class="form-group"><label>Phone Number *</label><input type="tel" name="Phone" required placeholder="870-555-0000"></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Email Address</label><input type="email" name="Email" placeholder="Optional but helpful"></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Additional Notes</label><input type="text" name="Notes" placeholder="File ready to print? Special requests?"></div>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-secondary" onclick="goToPanel(2)">← Back</button>
+          <button type="submit" class="btn btn-primary">Send Quote Request →</button>
+        </div>
+      </form>
+
+      <div class="success-msg" id="success-msg">
+        <h3>✓ Request Received!</h3>
+        <p>We'll be in touch shortly to confirm your quote. Questions? Call us at <strong>870-379-2421</strong>.</p>
+      </div>
+    </div>
+
+  </div><!-- end calculator-wrap -->
+</section>
+
+<!-- PHONE CTA -->
+<section class="phone-cta-section">
+  <h2 class="reveal">Prefer to Call?</h2>
+  <p class="reveal">Give us a call and tell us what you need. We'll give you a straight answer and a fair price.</p>
+  <a href="tel:8703792421" class="cta-phone reveal">870-379-2421</a>
+  <span class="cta-label">Mon – Fri · Delight, Arkansas</span>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Alexander Printing</div>
+  <address>Delight, Arkansas<br><a href="tel:8703792421">870-379-2421</a></address>
+  <p class="footer-copy">© 2025 Alexander Printing · Serving Arkansas Since 1925</p>
+  <p class="footer-copy" style="margin-top:0.4rem;">Website by <a href="https://www.delightdigitaldesigns.com" target="_blank" style="color:var(--sky);text-decoration:none;">Delight Digital Designs</a></p>
+</footer>
+
+<script>
+// ── PRICING DATA ──────────────────────────────────────────────────
+
+const BC_PRICES = {
+  c1s:   { 1: {100:25,250:31,500:39,1000:59},   2: {100:30,250:37.5,500:50,1000:75} },
+  linen: { 1: {100:30,250:36,500:44,1000:64},   2: {100:35,250:42.5,500:55,1000:80} }
+};
+
+const RC_PRICES = {
+  c1s:   { 1: {100:77.5,250:149,500:249,1000:415}, 2: {100:99,250:175,500:299,1000:550} },
+  linen: { 1: {100:82.5,250:154,500:254,1000:420}, 2: {100:104,250:180,500:304,1000:555} }
+};
+
+const ENV_PRICES = {
+  '10reg':  { bw:{500:66,1000:116,1500:157,2000:194,2500:224}, color:{500:115,1000:199,1500:272,2000:337,2500:389} },
+  '10rps':  { bw:{500:106,1000:187,1500:253,2000:314,2500:362}, color:{500:154,1000:272,1500:369,2000:456,2500:527} },
+  '10wind': { bw:{500:72,1000:128,1500:173,2000:214,2500:247}, color:{500:120,1000:213,1500:289,2000:357,2500:412} },
+  '10sec':  { bw:{500:68,1000:121,1500:163,2000:202,2500:233}, color:{500:116,1000:206,1500:279,2000:345,2500:398} },
+  '10wsec': { bw:{500:76,1000:134,1500:182,2000:225,2500:260}, color:{500:124,1000:219,1500:297,2000:368,2500:425} },
+  '10linen':{ bw:{500:138,1000:244,1500:330,2000:409,2500:471}, color:{500:186,1000:329,1500:446,2000:552,2500:637} },
+  '634':    { bw:{500:65,1000:115,1500:156,2000:194,2500:224}, color:{500:113,1000:201,1500:272,2000:337,2500:389} },
+  'a7':     { bw:{10:4,25:8,50:12,100:18,250:43}, color:{10:6,25:13,50:19,100:28,250:67} },
+  'a7plus': { bw:{10:6,25:13,50:20,100:29,250:67}, color:{10:8,25:17,50:27,100:39,250:93} }
+};
+
+const ENV_LARGE_QTYS = [500,1000,1500,2000,2500];
+const ENV_SMALL_QTYS = [10,25,50,100,250];
+const ENV_SMALL_TYPES = ['a7','a7plus'];
+
+const PAPER_COST = { '40':26.25,'50':26.50,'60':34.25,'60ivory':55.00,'80':65.00,'c1s':137.50 };
+const THICKNESS  = { '40':0.002947,'50':0.0037,'60':0.0049,'60ivory':0.0049,'80':0.006 };
+const TRIM_TABLE = { 0.1:12,0.2:10,0.3:8,0.4:7,0.5:6,0.6:5,0.7:4,0.8:4,0.9:3,1.0:3,1.1:3,1.2:3,1.3:2,1.4:2,1.5:2,1.6:2,1.7:2 };
+
+function getMarkup(qty) {
+  if (qty <= 50)  return 3.0;
+  if (qty <= 100) return 2.7;
+  if (qty <= 250) return 2.5;
+  if (qty <= 500) return 2.3;
+  return 2.2;
+}
+
+// ── STATE ─────────────────────────────────────────────────────────
+let currentProduct = null;
+
+// ── SCROLL + SELECT FROM SERVICE CARD ────────────────────────────
+function scrollToQuote(product) {
+  setTimeout(() => {
+    currentProduct = product;
+    document.querySelectorAll('.product-opts').forEach(o => o.style.display = 'none');
+    const opts = document.getElementById('opts-' + product);
+    if (opts) {
+      opts.style.display = 'block';
+      updateCalcBtn();
+      goToPanel(2);
+    } else {
+      goToPanel(1);
+      setTimeout(() => {
+        const btn = document.querySelector(`.product-btn[onclick*="${product}"]`);
+        if (btn) btn.click();
+      }, 100);
+    }
+    updateEnvQty();
+  }, 400);
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────
+function goToPanel(n) {
+  document.querySelectorAll('.panel').forEach((p,i) => p.classList.toggle('active', i === n-1));
+  document.querySelectorAll('.step').forEach((s,i) => {
+    s.classList.remove('active','done');
+    if (i < n-1) s.classList.add('done');
+    if (i === n-1) s.classList.add('active');
+  });
+}
+
+function goBack() {
+  goToPanel(1);
+  document.querySelectorAll('.product-btn').forEach(b => b.classList.remove('selected'));
+}
+
+// ── PRODUCT SELECTION ─────────────────────────────────────────────
+function selectProduct(id) {
+  currentProduct = id;
+  document.querySelectorAll('.product-btn').forEach(b => b.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  document.querySelectorAll('.product-opts').forEach(o => o.style.display = 'none');
+  document.getElementById('opts-' + id).style.display = 'block';
+  updateCalcBtn();
+  goToPanel(2);
+  updateEnvQty();
+}
+
+function updateCalcBtn() {
+  const btn = document.getElementById('calc-btn');
+  if (currentProduct === 'eddm' || currentProduct === 'custom') {
+    btn.textContent = 'Continue to Request →';
+    btn.onclick = goToContactDirect;
+  } else {
+    btn.textContent = 'Calculate Estimate →';
+    btn.onclick = calculateQuote;
+  }
+}
+
+function goToContactDirect() {
+  const isEDDM = currentProduct === 'eddm';
+  const isCustom = currentProduct === 'custom';
+  const desc = isCustom ? (document.getElementById('custom-desc').value || 'Custom print inquiry') : '';
+  document.getElementById('hid-product').value = isEDDM ? 'EDDM Mailers' : 'Custom Print';
+  document.getElementById('hid-specs').value = isCustom && desc ? desc : (isEDDM ? 'EDDM custom quote requested' : 'Custom print inquiry');
+  document.getElementById('hid-estimate').value = 'Custom quote required';
+  document.getElementById('estimate-box').classList.add('visible');
+  document.getElementById('estimate-price').textContent = 'Custom Quote';
+  document.getElementById('estimate-note').textContent = isEDDM
+    ? "EDDM pricing varies by route and quantity. We'll get back to you promptly."
+    : "Tell us about your project below and we'll get back to you with a price.";
+  document.getElementById('toggle-btn').style.display = 'none';
+  goToPanel(3);
+}
+
+// ── ENVELOPE QTY ──────────────────────────────────────────────────
+function updateEnvQty() {
+  const typeEl = document.getElementById('env-type');
+  if (!typeEl) return;
+  const type = typeEl.value;
+  const sel = document.getElementById('env-qty');
+  const qtys = ENV_SMALL_TYPES.includes(type) ? ENV_SMALL_QTYS : ENV_LARGE_QTYS;
+  sel.innerHTML = qtys.map(q => `<option value="${q}">${q.toLocaleString()}</option>`).join('');
+  sel.selectedIndex = Math.floor(qtys.length / 2);
+}
+
+// ── CALCULATE ─────────────────────────────────────────────────────
+function calculateQuote() {
+  let price = 0, note = '', specs = '', breakdownHTML = '', isRange = false, showBreakdown = false;
+
+  if (currentProduct === 'business-cards') {
+    const qty = parseInt(document.getElementById('bc-qty').value);
+    const sides = parseInt(document.getElementById('bc-sides').value);
+    const stock = document.getElementById('bc-stock').value;
+    price = BC_PRICES[stock][sides][qty];
+    specs = `Business Cards — Qty: ${qty}, ${sides===1?'1-Sided':'2-Sided'}, ${stock==='c1s'?'C1S Gloss':'Linen'}`;
+    note  = `${qty} cards, ${sides===1?'1-sided':'2-sided'}, ${stock==='c1s'?'C1S gloss':'linen'} stock`;
+
+  } else if (currentProduct === 'rack-cards') {
+    const qty = parseInt(document.getElementById('rc-qty').value);
+    const sides = parseInt(document.getElementById('rc-sides').value);
+    const stock = document.getElementById('rc-stock').value;
+    price = RC_PRICES[stock][sides][qty];
+    specs = `Rack Cards (4×9) — Qty: ${qty}, ${sides===1?'1-Sided':'2-Sided'}, ${stock==='c1s'?'C1S Gloss':'Linen'}`;
+    note  = `${qty} rack cards, ${sides===1?'1-sided':'2-sided'}, ${stock==='c1s'?'C1S gloss':'linen'} stock`;
+
+  } else if (currentProduct === 'envelopes') {
+    const type  = document.getElementById('env-type').value;
+    const color = document.getElementById('env-color').value;
+    const qty   = parseInt(document.getElementById('env-qty').value);
+    price = ENV_PRICES[type][color][qty];
+    const typeName = document.getElementById('env-type').options[document.getElementById('env-type').selectedIndex].text;
+    specs = `Envelopes — ${typeName}, ${color==='bw'?'B&W':'Color'}, Qty: ${qty}`;
+    note  = `${qty} ${typeName}, ${color==='bw'?'black & white':'full color'}`;
+
+  } else if (currentProduct === 'books') {
+    const size  = document.getElementById('bk-size').value;
+    const pages = parseInt(document.getElementById('bk-pages').value);
+    const qty   = parseInt(document.getElementById('bk-qty').value);
+    const stock = document.getElementById('bk-stock').value;
+
+    if (pages % 2 !== 0) { alert('Page count must be an even number.'); return; }
+    if (qty < 24) { alert('Minimum quantity for books is 24.'); return; }
+
+    const sheets = pages / 2;
+    const thick  = parseFloat((THICKNESS[stock] * sheets).toFixed(4));
+    const interiorUp = (size === '8511') ? 2 : 4;
+    const coverUp    = (size === '5585') ? 2 : 1;
+    const interiorSheets = sheets * Math.ceil(qty / interiorUp);
+    const coverSheets    = Math.ceil(qty / coverUp);
+    const interiorClicks = interiorSheets * 0.02;
+    const coverClicks    = coverSheets * 0.07;
+    const interiorPaper  = interiorSheets * (PAPER_COST[stock] / 1000);
+    const coverPaper     = coverSheets * (PAPER_COST['c1s'] / 1000);
+    const setupLabor     = 37.50;
+    const runLabor       = (qty / 90) * 45;
+    const bookWidth      = size === '8511' ? 11 : 8.5;
+    const glue           = thick * bookWidth * qty * 0.035;
+    const roundedThick   = Math.round(thick * 10) / 10;
+    const clampedThick   = Math.min(Math.max(roundedThick, 0.1), 1.7);
+    const bksPerStack    = TRIM_TABLE[clampedThick] || 2;
+    const trimLabor      = (Math.ceil(qty / bksPerStack) / 60) * 22.50;
+    const totalCost      = interiorClicks + coverClicks + interiorPaper + coverPaper + setupLabor + runLabor + glue + trimLabor;
+    const markup         = getMarkup(qty);
+    const lowPrice       = totalCost * (markup - 0.15);
+    const highPrice      = totalCost * (markup + 0.15);
+    isRange = true; showBreakdown = true;
+    const sizeLabel  = size==='5585'?'5.5×8.5':size==='69'?'6×9':'8.5×11';
+    const stockLabel = {'40':'40#','50':'50#','60':'60#','60ivory':'60# Ivory','80':'80# Semi Gloss'}[stock];
+    specs = `Paperback Books — Size: ${sizeLabel}, Pages: ${pages}, Qty: ${qty}, Stock: ${stockLabel}`;
+    note  = `${qty} books · ${pages} pages · ${sizeLabel} · ${stockLabel} · Spine: ${thick}"`;
+    breakdownHTML = `
+      <div class="breakdown-row"><span>Interior clicks</span><span>$${interiorClicks.toFixed(2)}</span></div>
+      <div class="breakdown-row"><span>Cover clicks</span><span>$${coverClicks.toFixed(2)}</span></div>
+      <div class="breakdown-row"><span>Interior paper</span><span>$${interiorPaper.toFixed(2)}</span></div>
+      <div class="breakdown-row"><span>Cover paper</span><span>$${coverPaper.toFixed(2)}</span></div>
+      <div class="breakdown-row"><span>Setup labor</span><span>$${setupLabor.toFixed(2)}</span></div>
+      <div class="breakdown-row"><span>Binding labor</span><span>$${runLabor.toFixed(2)}</span></div>
+      <div class="breakdown-row"><span>Glue</span><span>$${glue.toFixed(2)}</span></div>
+      <div class="breakdown-row"><span>Trimming</span><span>$${trimLabor.toFixed(2)}</span></div>
+      <div class="breakdown-row" style="font-weight:bold;border-top:1px solid var(--sky);padding-top:0.4rem;margin-top:0.2rem"><span>Est. cost basis</span><span>$${totalCost.toFixed(2)}</span></div>`;
+    document.getElementById('estimate-price').textContent = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
+    document.getElementById('hid-estimate').value = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
+
+  } else if (currentProduct === 'saddle') {
+    const size  = document.getElementById('ss-size').value;
+    const pages = parseInt(document.getElementById('ss-pages').value);
+    const qty   = parseInt(document.getElementById('ss-qty').value);
+    const stock = document.getElementById('ss-stock').value;
+    const cover = document.getElementById('ss-cover').value;
+    if (pages % 4 !== 0) { alert('Page count must be a multiple of 4.'); return; }
+    const sheets         = pages / 4;
+    const interiorSheets = sheets * qty;
+    const coverSheets    = qty;
+    const interiorClicks = interiorSheets * 0.02;
+    const coverClicks    = coverSheets * 0.07;
+    const interiorPaper  = interiorSheets * (PAPER_COST[stock] / 1000);
+    const coverPaper     = coverSheets * (PAPER_COST[cover === 'c1s' ? 'c1s' : '80'] / 1000);
+    const totalCost      = interiorClicks + coverClicks + interiorPaper + coverPaper;
+    const markup         = getMarkup(qty);
+    const lowPrice       = totalCost * (markup - 0.15);
+    const highPrice      = totalCost * (markup + 0.15);
+    isRange = true; showBreakdown = true;
+    const sizeLabel  = size==='5585'?'5.5×8.5':'8.5×11';
+    const stockLabel = {'40':'40#','50':'50#','60':'60#','60ivory':'60# Ivory','80':'80# Semi Gloss'}[stock];
+    specs = `Saddle Stitch — Size: ${sizeLabel}, Pages: ${pages}, Qty: ${qty}, Stock: ${stockLabel}`;
+    note  = `${qty} booklets · ${pages} pages · ${sizeLabel} · ${stockLabel}`;
+    breakdownHTML = `
+      <div class="breakdown-row"><span>Interior clicks</span><span>$${interiorClicks.toFixed(2)}</span></div>
+      <div class="breakdown-row"><span>Cover clicks</span><span>$${coverClicks.toFixed(2)}</span></div>
+      <div class="breakdown-row"><span>Interior paper</span><span>$${interiorPaper.toFixed(2)}</span></div>
+      <div class="breakdown-row"><span>Cover paper</span><span>$${coverPaper.toFixed(2)}</span></div>
+      <div class="breakdown-row" style="font-weight:bold;border-top:1px solid var(--sky);padding-top:0.4rem;margin-top:0.2rem"><span>Est. cost basis</span><span>$${totalCost.toFixed(2)}</span></div>`;
+    document.getElementById('estimate-price').textContent = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
+    document.getElementById('hid-estimate').value = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
+  }
+
+  if (!isRange && price > 0) {
+    document.getElementById('estimate-price').textContent = `$${price.toFixed(2)}`;
+    document.getElementById('hid-estimate').value = `$${price.toFixed(2)}`;
+  }
+
+  document.getElementById('estimate-note').textContent = note;
+  document.getElementById('hid-product').value = currentProduct.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+  document.getElementById('hid-specs').value = specs;
+  document.getElementById('estimate-box').classList.add('visible');
+
+  if (showBreakdown) {
+    document.getElementById('toggle-btn').style.display = 'inline';
+    document.getElementById('breakdown').innerHTML = breakdownHTML;
+  } else {
+    document.getElementById('toggle-btn').style.display = 'none';
+  }
+
+  goToPanel(3);
+}
+
+function toggleBreakdown() {
+  const bd = document.getElementById('breakdown');
+  const btn = document.getElementById('toggle-btn');
+  bd.classList.toggle('show');
+  btn.textContent = bd.classList.contains('show') ? 'Hide cost details ▲' : 'Show cost details ▼';
+}
+
+// ── FORM SUBMIT ───────────────────────────────────────────────────
+document.getElementById('quote-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('[type="submit"]');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  try {
+    const res = await fetch(this.action, { method:'POST', body: new FormData(this), headers:{'Accept':'application/json'} });
+    if (res.ok) { this.style.display = 'none'; document.getElementById('success-msg').classList.add('show'); }
+    else { btn.textContent = 'Error — Please Call Us'; btn.disabled = false; }
+  } catch { btn.textContent = 'Error — Please Call Us'; btn.disabled = false; }
+});
+
+// ── SCROLL REVEAL ─────────────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Init
+updateEnvQty();
+</script>
+</body>
+</html>
