@@ -298,10 +298,7 @@
   .estimate-label { font-family: 'Oswald', sans-serif; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
   .estimate-price { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--navy); }
   .estimate-note { font-style: italic; font-size: 0.88rem; color: var(--text-soft); margin-top: 0.4rem; }
-  .estimate-breakdown { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--sky); font-size: 0.88rem; color: var(--text-soft); display: none; }
-  .estimate-breakdown.show { display: block; }
-  .breakdown-row { display: flex; justify-content: space-between; padding: 0.2rem 0; }
-  .toggle-detail { background: none; border: none; color: var(--accent); font-family: 'EB Garamond', serif; font-size: 0.9rem; cursor: pointer; text-decoration: underline; padding: 0; margin-top: 0.5rem; }
+  .breakdown-row { display: none; }
 
   /* CONTACT */
   .contact-section { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--sky); }
@@ -700,8 +697,6 @@
         <div class="estimate-label">Estimated Price</div>
         <div class="estimate-price" id="estimate-price">—</div>
         <div class="estimate-note" id="estimate-note"></div>
-        <button class="toggle-detail" onclick="toggleBreakdown()" id="toggle-btn" style="display:none">Show cost details ▼</button>
-        <div class="estimate-breakdown" id="breakdown"></div>
       </div>
 
       <div class="form-divider"><span>Send Us Your Request</span></div>
@@ -866,7 +861,7 @@ function goToContactDirect() {
   document.getElementById('estimate-note').textContent = isEDDM
     ? "EDDM pricing varies by route and quantity. We'll get back to you promptly."
     : "Tell us about your project below and we'll get back to you with a price.";
-  document.getElementById('toggle-btn').style.display = 'none';
+  document.getElementById('toggle-btn') && (document.getElementById('toggle-btn').style.display = 'none');
   goToPanel(3);
 }
 
@@ -1002,21 +997,7 @@ function calculateQuote() {
   document.getElementById('hid-specs').value = specs;
   document.getElementById('estimate-box').classList.add('visible');
 
-  if (showBreakdown) {
-    document.getElementById('toggle-btn').style.display = 'inline';
-    document.getElementById('breakdown').innerHTML = breakdownHTML;
-  } else {
-    document.getElementById('toggle-btn').style.display = 'none';
-  }
-
   goToPanel(3);
-}
-
-function toggleBreakdown() {
-  const bd = document.getElementById('breakdown');
-  const btn = document.getElementById('toggle-btn');
-  bd.classList.toggle('show');
-  btn.textContent = bd.classList.contains('show') ? 'Hide cost details ▲' : 'Show cost details ▼';
 }
 
 // ── FORM SUBMIT ───────────────────────────────────────────────────
