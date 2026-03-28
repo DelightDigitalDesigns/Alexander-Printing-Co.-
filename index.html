@@ -1214,7 +1214,7 @@
           <span class="eddm-total-val" id="eddm-total">$0.00</span>
         </div>
       </div>
-      <p class="eddm-disclaimer">Estimate includes printing, bundling, paperwork & post office delivery. Final price confirmed before printing begins. USPS postage: $0.234/piece.</p>
+      <p class="eddm-disclaimer">Estimate includes printing, bundling, paperwork & post office delivery. Final price confirmed before printing begins. USPS postage: $0.26/piece.</p>
     </div>
 
     <!-- CONTACT FORM -->
@@ -1963,7 +1963,7 @@ function updateEddmTotals() {
   const costPerPiece  = paperCostPerPiece + clickCostPerPiece;
   const totalCost     = totalPieces * costPerPiece;
   const printPrice    = totalCost * markup * sizeUpcharge;
-  const postage       = totalPieces * 0.234;
+  const postage       = totalPieces * 0.26;
   const grandTotal    = printPrice + postage + handling;
 
   document.getElementById('eddm-pieces').textContent    = totalPieces.toLocaleString();
@@ -2081,7 +2081,7 @@ function updateEddmTotals() {
   const costPerPiece  = paperCostPerPiece + clickCostPerPiece;
   const totalCost     = totalPieces * costPerPiece;
   const printPrice    = totalCost * markup * sizeUpcharge;
-  const postage       = totalPieces * 0.234;
+  const postage       = totalPieces * 0.26;
   const grandTotal    = printPrice + postage + handling;
 
   document.getElementById('eddm-pieces').textContent   = totalPieces.toLocaleString();
