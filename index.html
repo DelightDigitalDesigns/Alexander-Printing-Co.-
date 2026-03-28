@@ -422,10 +422,22 @@
       <p>Full-color 4×9 rack cards designed to stand out in any display.</p>
       <span class="card-cta">Get a Quote →</span>
     </a>
-    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('envelopes')">
+    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('envelopes-business')">
       <span class="service-icon">✉️</span>
-      <h3>Envelopes &amp; Stationery</h3>
-      <p>Custom-printed envelopes and letterhead for a polished, professional look.</p>
+      <h3>Business Envelopes</h3>
+      <p>No. 10, No. 9 & 6¾ — regular, security, window & peel and seal options.</p>
+      <span class="card-cta">Get a Quote →</span>
+    </a>
+    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('envelopes-greeting')">
+      <span class="service-icon">💌</span>
+      <h3>Greeting Envelopes</h3>
+      <p>A7 & A7+ for announcements, invitations, and cards.</p>
+      <span class="card-cta">Get a Quote →</span>
+    </a>
+    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('invitations')">
+      <span class="service-icon">🎉</span>
+      <h3>Invitations</h3>
+      <p>4×6, 5×7 & 6×9 — premium stocks including linen. Perfect for any occasion.</p>
       <span class="card-cta">Get a Quote →</span>
     </a>
     <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('books')">
@@ -495,10 +507,20 @@
           <span class="product-name">Rack Cards</span>
           <span class="product-desc">4×9 full color</span>
         </button>
-        <button class="product-btn" onclick="selectProduct('envelopes')">
+        <button class="product-btn" onclick="selectProduct('envelopes-business')">
           <span class="product-icon">✉️</span>
-          <span class="product-name">Envelopes</span>
-          <span class="product-desc">#10, 6¾, A7 & more</span>
+          <span class="product-name">Business Envelopes</span>
+          <span class="product-desc">#10, #9 & 6¾</span>
+        </button>
+        <button class="product-btn" onclick="selectProduct('envelopes-greeting')">
+          <span class="product-icon">💌</span>
+          <span class="product-name">Greeting Envelopes</span>
+          <span class="product-desc">A7 & A7+</span>
+        </button>
+        <button class="product-btn" onclick="selectProduct('invitations')">
+          <span class="product-icon">🎉</span>
+          <span class="product-name">Invitations</span>
+          <span class="product-desc">4×6, 5×7 & 6×9</span>
         </button>
         <button class="product-btn" onclick="selectProduct('books')">
           <span class="product-icon">📖</span>
@@ -564,30 +586,76 @@
         </div>
       </div>
 
-      <!-- Envelopes -->
-      <div id="opts-envelopes" class="product-opts" style="display:none">
-        <div class="panel-title">Envelopes</div>
-        <div class="panel-sub">Multiple styles and sizes available</div>
+      <!-- Business Envelopes -->
+      <div id="opts-envelopes-business" class="product-opts" style="display:none">
+        <div class="panel-title">Business Envelopes</div>
+        <div class="panel-sub">No. 10, No. 9 & 6¾ envelopes</div>
         <div class="form-row">
-          <div class="form-group"><label>Envelope Type</label>
-            <select id="env-type" onchange="updateEnvQty()">
-              <option value="10reg">No. 10 Regular</option>
-              <option value="10rps">No. 10 Regular P&S</option>
-              <option value="10wind">No. 10 Window</option>
-              <option value="10sec">No. 10 Security</option>
-              <option value="10wsec">No. 10 Window Security</option>
-              <option value="10linen">No. 10 Linen</option>
+          <div class="form-group"><label>Size</label>
+            <select id="env-size" onchange="updateEnvOptions()">
+              <option value="10">No. 10</option>
+              <option value="9">No. 9</option>
               <option value="634">6¾</option>
+              <option value="10linen">No. 10 Linen (Premium)</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Print Color</label>
+            <select id="env-color-b">
+              <option value="bw">Black & White</option>
+              <option value="color">Full Color</option>
+            </select>
+          </div>
+        </div>
+        <div id="env-options-row" class="form-row">
+          <div class="form-group" id="env-security-group"><label>Security</label>
+            <select id="env-security" onchange="updateEnvCombination()">
+              <option value="0">No Security Tint</option>
+              <option value="1">Security Tint</option>
+            </select>
+          </div>
+          <div class="form-group" id="env-window-group"><label>Window</label>
+            <select id="env-window" onchange="updateEnvCombination()">
+              <option value="0">No Window</option>
+              <option value="1">Window (bottom left)</option>
+            </select>
+          </div>
+        </div>
+        <div id="env-seal-row" class="form-row single">
+          <div class="form-group" id="env-seal-group"><label>Seal Type</label>
+            <select id="env-seal" onchange="updateEnvCombination()">
+              <option value="0">Standard (Moisture)</option>
+              <option value="1">Peel & Seal</option>
+            </select>
+          </div>
+        </div>
+        <div id="env-unavailable" style="display:none;background:#fff3f3;border-left:4px solid #c0392b;padding:0.75rem 1rem;margin-bottom:1rem;font-style:italic;color:#8b2020;font-size:0.9rem;">
+          ⚠️ That combination is not available. Please adjust your selections.
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Quantity</label><select id="env-qty-b"></select></div>
+        </div>
+      </div>
+
+      <!-- Greeting Envelopes -->
+      <div id="opts-envelopes-greeting" class="product-opts" style="display:none">
+        <div class="panel-title">Greeting Envelopes</div>
+        <div class="panel-sub">A7 & A7+ for announcements, invitations & cards</div>
+        <div class="form-row">
+          <div class="form-group"><label>Size</label>
+            <select id="env-greet-size" onchange="updateGreetQty()">
               <option value="a7">A7</option>
               <option value="a7plus">A7+</option>
             </select>
           </div>
           <div class="form-group"><label>Print Color</label>
-            <select id="env-color"><option value="bw">Black & White</option><option value="color">Full Color</option></select>
+            <select id="env-greet-color">
+              <option value="bw">Black & White</option>
+              <option value="color">Full Color</option>
+            </select>
           </div>
         </div>
         <div class="form-row single">
-          <div class="form-group"><label>Quantity</label><select id="env-qty"></select></div>
+          <div class="form-group"><label>Quantity</label><select id="env-qty-g"></select></div>
         </div>
       </div>
 
@@ -657,7 +725,38 @@
         </div>
       </div>
 
-      <!-- EDDM -->
+      <!-- Invitations -->
+      <div id="opts-invitations" class="product-opts" style="display:none">
+        <div class="panel-title">Invitations</div>
+        <div class="panel-sub">Premium quality invitations — estimated pricing, we'll confirm before printing.</div>
+        <div class="form-row">
+          <div class="form-group"><label>Size</label>
+            <select id="inv-size">
+              <option value="4x6">4 × 6</option>
+              <option value="5x7" selected>5 × 7</option>
+              <option value="6x9">6 × 9</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Quantity (min. 24)</label>
+            <input type="number" id="inv-qty" value="100" min="24" max="5000">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Stock</label>
+            <select id="inv-stock">
+              <option value="c1s">C1S (Standard Gloss)</option>
+              <option value="c2s">C2S (Gloss Both Sides)</option>
+              <option value="linen">Linen (Premium)</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Sides</label>
+            <select id="inv-sides">
+              <option value="1">1-Sided</option>
+              <option value="2">2-Sided</option>
+            </select>
+          </div>
+        </div>
+      </div>
       <div id="opts-eddm" class="product-opts" style="display:none">
         <div class="panel-title">EDDM Mailers</div>
         <div class="panel-sub">Every Door Direct Mail — custom quoted per job.</div>
@@ -760,22 +859,104 @@ const RC_PRICES = {
 };
 
 const ENV_PRICES = {
-  '10reg':  { bw:{500:66,1000:116,1500:157,2000:194,2500:224}, color:{500:115,1000:199,1500:272,2000:337,2500:389} },
-  '10rps':  { bw:{500:106,1000:187,1500:253,2000:314,2500:362}, color:{500:154,1000:272,1500:369,2000:456,2500:527} },
-  '10wind': { bw:{500:72,1000:128,1500:173,2000:214,2500:247}, color:{500:120,1000:213,1500:289,2000:357,2500:412} },
-  '10sec':  { bw:{500:68,1000:121,1500:163,2000:202,2500:233}, color:{500:116,1000:206,1500:279,2000:345,2500:398} },
-  '10wsec': { bw:{500:76,1000:134,1500:182,2000:225,2500:260}, color:{500:124,1000:219,1500:297,2000:368,2500:425} },
-  '10linen':{ bw:{500:138,1000:244,1500:330,2000:409,2500:471}, color:{500:186,1000:329,1500:446,2000:552,2500:637} },
-  '634':    { bw:{500:65,1000:115,1500:156,2000:194,2500:224}, color:{500:113,1000:201,1500:272,2000:337,2500:389} },
-  'a7':     { bw:{10:4,25:8,50:12,100:18,250:43}, color:{10:6,25:13,50:19,100:28,250:67} },
-  'a7plus': { bw:{10:6,25:13,50:20,100:29,250:67}, color:{10:8,25:17,50:27,100:39,250:93} }
+  // #10 & #9 share same prices — keyed by: size_security_window_seal
+  // size: 10 or 9, security: 0/1, window: 0/1, seal: 0/1
+  '10_0_0_0': { bw:{500:66,1000:116,1500:157,2000:194,2500:224},   color:{500:115,1000:199,1500:272,2000:337,2500:389} }, // #10 Regular
+  '10_1_0_0': { bw:{500:68,1000:121,1500:163,2000:202,2500:233},   color:{500:116,1000:206,1500:279,2000:345,2500:398} }, // #10 Security
+  '10_0_0_1': { bw:{500:106,1000:187,1500:253,2000:314,2500:362},  color:{500:154,1000:272,1500:369,2000:456,2500:527} }, // #10 Peel&Seal
+  '10_0_1_0': { bw:{500:72,1000:128,1500:173,2000:214,2500:247},   color:{500:120,1000:213,1500:289,2000:357,2500:412} }, // #10 Window
+  '10_1_1_0': { bw:{500:76,1000:134,1500:182,2000:225,2500:260},   color:{500:124,1000:219,1500:297,2000:368,2500:425} }, // #10 Window Security
+  '10_0_1_1': { bw:{500:92,1000:183,1500:274,2000:365,2500:455},   color:{500:140,1000:279,1500:418,2000:557,2500:697} }, // #10 Window P&S
+  // #10 Linen
+  '10linen':  { bw:{500:138,1000:244,1500:330,2000:409,2500:471},  color:{500:186,1000:329,1500:446,2000:552,2500:637} },
+  // #9 same prices as #10 for matching combos
+  '9_0_0_0':  { bw:{500:66,1000:116,1500:157,2000:194,2500:224},   color:{500:115,1000:199,1500:272,2000:337,2500:389} }, // #9 Regular
+  '9_1_0_0':  { bw:{500:68,1000:121,1500:163,2000:202,2500:233},   color:{500:116,1000:206,1500:279,2000:345,2500:398} }, // #9 Security
+  '9_0_1_0':  { bw:{500:72,1000:128,1500:173,2000:214,2500:247},   color:{500:120,1000:213,1500:289,2000:357,2500:412} }, // #9 Window
+  // 6¾
+  '634':      { bw:{500:65,1000:115,1500:156,2000:194,2500:224},   color:{500:113,1000:201,1500:272,2000:337,2500:389} },
+  // Greeting
+  'a7':       { bw:{10:4,25:8,50:12,100:18,250:43},   color:{10:6,25:13,50:19,100:28,250:67} },
+  'a7plus':   { bw:{10:6,25:13,50:20,100:29,250:67},  color:{10:8,25:17,50:27,100:39,250:93} }
 };
+
+// Unavailable combinations: window=1 + security=1 + peel&seal=1
+function isEnvUnavailable(size, security, window, seal) {
+  if (size === '9' && seal === '1') return true;           // no P&S for #9
+  if (size === '9' && security === '1' && window === '1') return true; // no window security for #9
+  if (security === '1' && window === '1' && seal === '1') return true; // no window+security+P&S
+  return false;
+}
+
+function getEnvKey(size, security, window, seal) {
+  if (size === '10linen' || size === '634') return size;
+  return `${size}_${security}_${window}_${seal}`;
+}
 
 const ENV_LARGE_QTYS = [500,1000,1500,2000,2500];
 const ENV_SMALL_QTYS = [10,25,50,100,250];
-const ENV_SMALL_TYPES = ['a7','a7plus'];
 
-const PAPER_COST = { '40':26.25,'50':26.50,'60':34.25,'60ivory':55.00,'80':65.00,'c1s':137.50 };
+function updateEnvOptions() {
+  const size = document.getElementById('env-size').value;
+  const secGroup   = document.getElementById('env-security-group');
+  const winGroup   = document.getElementById('env-window-group');
+  const sealGroup  = document.getElementById('env-seal-group');
+  const optRow     = document.getElementById('env-options-row');
+  const sealRow    = document.getElementById('env-seal-row');
+
+  if (size === '634' || size === '10linen') {
+    optRow.style.display = 'none';
+    sealRow.style.display = 'none';
+  } else if (size === '9') {
+    optRow.style.display = 'grid';
+    sealRow.style.display = 'none'; // no P&S for #9
+    secGroup.style.display = 'flex';
+    winGroup.style.display = 'flex';
+  } else {
+    optRow.style.display = 'grid';
+    sealRow.style.display = 'grid';
+    secGroup.style.display = 'flex';
+    winGroup.style.display = 'flex';
+    sealGroup.style.display = 'flex';
+  }
+  updateEnvCombination();
+}
+
+function updateEnvCombination() {
+  const size     = document.getElementById('env-size').value;
+  const security = document.getElementById('env-security') ? document.getElementById('env-security').value : '0';
+  const window_  = document.getElementById('env-window') ? document.getElementById('env-window').value : '0';
+  const seal     = document.getElementById('env-seal') ? document.getElementById('env-seal').value : '0';
+  const unavail  = document.getElementById('env-unavailable');
+  const calcBtn  = document.getElementById('calc-btn');
+
+  if (isEnvUnavailable(size, security, window_, seal)) {
+    unavail.style.display = 'block';
+    calcBtn.disabled = true;
+  } else {
+    unavail.style.display = 'none';
+    calcBtn.disabled = false;
+  }
+  updateEnvQtyB();
+}
+
+function updateEnvQtyB() {
+  const sel = document.getElementById('env-qty-b');
+  if (!sel) return;
+  sel.innerHTML = ENV_LARGE_QTYS.map(q => `<option value="${q}">${q.toLocaleString()}</option>`).join('');
+  sel.selectedIndex = 0;
+}
+
+function updateGreetQty() {
+  const sel = document.getElementById('env-qty-g');
+  if (!sel) return;
+  sel.innerHTML = ENV_SMALL_QTYS.map(q => `<option value="${q}">${q.toLocaleString()}</option>`).join('');
+  sel.selectedIndex = 2;
+}
+
+
+
+const PAPER_COST = { '40':26.25,'50':26.50,'60':34.25,'60ivory':55.00,'80':65.00,'c1s':140.25,'c2s':190.00 };
 const THICKNESS  = { '40':0.002947,'50':0.0037,'60':0.0049,'60ivory':0.0049,'80':0.006 };
 const TRIM_TABLE = { 0.1:12,0.2:10,0.3:8,0.4:7,0.5:6,0.6:5,0.7:4,0.8:4,0.9:3,1.0:3,1.1:3,1.2:3,1.3:2,1.4:2,1.5:2,1.6:2,1.7:2 };
 
@@ -807,7 +988,8 @@ function scrollToQuote(product) {
         if (btn) btn.click();
       }, 100);
     }
-    updateEnvQty();
+    updateEnvOptions();
+    updateGreetQty();
   }, 400);
 }
 
@@ -835,7 +1017,8 @@ function selectProduct(id) {
   document.getElementById('opts-' + id).style.display = 'block';
   updateCalcBtn();
   goToPanel(2);
-  updateEnvQty();
+  updateEnvOptions();
+  updateGreetQty();
 }
 
 function updateCalcBtn() {
@@ -865,17 +1048,6 @@ function goToContactDirect() {
   goToPanel(3);
 }
 
-// ── ENVELOPE QTY ──────────────────────────────────────────────────
-function updateEnvQty() {
-  const typeEl = document.getElementById('env-type');
-  if (!typeEl) return;
-  const type = typeEl.value;
-  const sel = document.getElementById('env-qty');
-  const qtys = ENV_SMALL_TYPES.includes(type) ? ENV_SMALL_QTYS : ENV_LARGE_QTYS;
-  sel.innerHTML = qtys.map(q => `<option value="${q}">${q.toLocaleString()}</option>`).join('');
-  sel.selectedIndex = Math.floor(qtys.length / 2);
-}
-
 // ── CALCULATE ─────────────────────────────────────────────────────
 function calculateQuote() {
   let price = 0, note = '', specs = '', breakdownHTML = '', isRange = false, showBreakdown = false;
@@ -896,14 +1068,30 @@ function calculateQuote() {
     specs = `Rack Cards (4×9) — Qty: ${qty}, ${sides===1?'1-Sided':'2-Sided'}, ${stock==='c1s'?'C1S Gloss':'Linen'}`;
     note  = `${qty} rack cards, ${sides===1?'1-sided':'2-sided'}, ${stock==='c1s'?'C1S gloss':'linen'} stock`;
 
-  } else if (currentProduct === 'envelopes') {
-    const type  = document.getElementById('env-type').value;
-    const color = document.getElementById('env-color').value;
-    const qty   = parseInt(document.getElementById('env-qty').value);
-    price = ENV_PRICES[type][color][qty];
-    const typeName = document.getElementById('env-type').options[document.getElementById('env-type').selectedIndex].text;
-    specs = `Envelopes — ${typeName}, ${color==='bw'?'B&W':'Color'}, Qty: ${qty}`;
-    note  = `${qty} ${typeName}, ${color==='bw'?'black & white':'full color'}`;
+  } else if (currentProduct === 'envelopes-business') {
+    const size     = document.getElementById('env-size').value;
+    const color    = document.getElementById('env-color-b').value;
+    const qty      = parseInt(document.getElementById('env-qty-b').value);
+    const security = document.getElementById('env-security') ? document.getElementById('env-security').value : '0';
+    const window_  = document.getElementById('env-window') ? document.getElementById('env-window').value : '0';
+    const seal     = document.getElementById('env-seal') ? document.getElementById('env-seal').value : '0';
+    const key      = getEnvKey(size, security, window_, seal);
+    price = ENV_PRICES[key][color][qty];
+    const sizeLabel = size === '10linen' ? 'No. 10 Linen' : size === '634' ? '6¾' : `No. ${size}`;
+    const secLabel  = security === '1' ? ' · Security Tint' : '';
+    const winLabel  = window_ === '1' ? ' · Window' : '';
+    const sealLabel = seal === '1' ? ' · Peel & Seal' : '';
+    specs = `Business Envelopes — ${sizeLabel}${secLabel}${winLabel}${sealLabel} · ${color === 'bw' ? 'B&W' : 'Color'} · Qty: ${qty}`;
+    note  = `${qty} ${sizeLabel}${secLabel}${winLabel}${sealLabel} · ${color === 'bw' ? 'Black & White' : 'Full Color'}`;
+
+  } else if (currentProduct === 'envelopes-greeting') {
+    const size  = document.getElementById('env-greet-size').value;
+    const color = document.getElementById('env-greet-color').value;
+    const qty   = parseInt(document.getElementById('env-qty-g').value);
+    price = ENV_PRICES[size][color][qty];
+    const sizeLabel = size === 'a7' ? 'A7' : 'A7+';
+    specs = `Greeting Envelopes — ${sizeLabel} · ${color === 'bw' ? 'B&W' : 'Color'} · Qty: ${qty}`;
+    note  = `${qty} ${sizeLabel} envelopes · ${color === 'bw' ? 'Black & White' : 'Full Color'}`;
 
   } else if (currentProduct === 'books') {
     const size  = document.getElementById('bk-size').value;
@@ -951,6 +1139,63 @@ function calculateQuote() {
       <div class="breakdown-row"><span>Glue</span><span>$${glue.toFixed(2)}</span></div>
       <div class="breakdown-row"><span>Trimming</span><span>$${trimLabor.toFixed(2)}</span></div>
       <div class="breakdown-row" style="font-weight:bold;border-top:1px solid var(--sky);padding-top:0.4rem;margin-top:0.2rem"><span>Est. cost basis</span><span>$${totalCost.toFixed(2)}</span></div>`;
+    document.getElementById('estimate-price').textContent = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
+    document.getElementById('hid-estimate').value = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
+
+  } else if (currentProduct === 'invitations') {
+    const size  = document.getElementById('inv-size').value;
+    const qty   = parseInt(document.getElementById('inv-qty').value);
+    const stock = document.getElementById('inv-stock').value;
+    const sides = parseInt(document.getElementById('inv-sides').value);
+
+    if (qty < 24) { alert('Minimum quantity for invitations is 24.'); return; }
+
+    // Up counts per size per stock
+    const upCount = {
+      'c1s':  { '4x6': 9, '5x7': 6, '6x9': 4 },
+      'c2s':  { '4x6': 9, '5x7': 6, '6x9': 4 },
+      'linen':{ '4x6': 4, '5x7': 4, '6x9': 3 }
+    };
+
+    const paperCostPerSheet = { 'c1s': 0.14025, 'c2s': 0.19, 'linen': 0.48 };
+
+    function getInvMarkup(q) {
+      if (q <= 50)  return 36;
+      if (q <= 100) return 23;
+      if (q <= 250) return 17;
+      if (q <= 500) return 15;
+      return 13;
+    }
+
+    const floorPrice = 45;
+
+    // Calculate C1S price first (used as base for linen)
+    const c1sUp     = upCount['c1s'][size];
+    const c1sSheets = Math.ceil(qty / c1sUp);
+    const c1sCost   = (c1sSheets * paperCostPerSheet['c1s']) + (c1sSheets * sides * 0.07);
+    const c1sPrice  = Math.max(c1sCost * getInvMarkup(qty), floorPrice);
+
+    let calcPrice;
+    if (stock === 'linen') {
+      // Linen = 1.5× C1S price
+      calcPrice = c1sPrice * 1.5;
+    } else {
+      // C1S or C2S — calculate normally
+      const up       = upCount[stock][size];
+      const sheets   = Math.ceil(qty / up);
+      const cost     = (sheets * paperCostPerSheet[stock]) + (sheets * sides * 0.07);
+      calcPrice      = Math.max(cost * getInvMarkup(qty), floorPrice);
+    }
+
+    const lowPrice  = calcPrice * 0.92;
+    const highPrice = calcPrice * 1.08;
+    isRange = true;
+
+    const sizeLabel  = size.replace('x', '×');
+    const stockLabel = { 'c1s':'C1S Gloss', 'c2s':'C2S Gloss', 'linen':'Linen (Premium)' }[stock];
+    specs = `Invitations — Size: ${sizeLabel}, Qty: ${qty}, Stock: ${stockLabel}, ${sides===1?'1-Sided':'2-Sided'}`;
+    note  = `${qty} invitations · ${sizeLabel} · ${stockLabel} · ${sides===1?'1-sided':'2-sided'}`;
+
     document.getElementById('estimate-price').textContent = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
     document.getElementById('hid-estimate').value = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
 
@@ -1025,7 +1270,8 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // Init
-updateEnvQty();
+updateEnvOptions();
+updateGreetQty();
 </script>
 </body>
 </html>
