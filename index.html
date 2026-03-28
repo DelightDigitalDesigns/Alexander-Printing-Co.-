@@ -869,7 +869,9 @@
 
       <div class="form-divider"><span>Send Us Your Request</span></div>
 
-      <form id="quote-form" action="https://formspree.io/f/xkovyekk" method="POST">
+      <form id="quote-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="988564dd-c55d-4d84-baef-fb204e646daa">
+        <input type="hidden" name="subject" value="New Quote Request — Alexander Printing">
         <input type="hidden" name="Product" id="hid-product">
         <input type="hidden" name="Specifications" id="hid-specs">
         <input type="hidden" name="Estimate" id="hid-estimate">
@@ -1218,7 +1220,9 @@
     <!-- CONTACT FORM -->
     <div id="eddm-contact-wrap" style="display:none" class="eddm-contact">
       <div class="form-divider"><span>Request Your EDDM Quote</span></div>
-      <form id="eddm-form" action="https://formspree.io/f/xkovyekk" method="POST">
+      <form id="eddm-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="988564dd-c55d-4d84-baef-fb204e646daa">
+        <input type="hidden" name="subject" value="New EDDM Request — Alexander Printing">
         <input type="hidden" name="Product" value="EDDM Mailers">
         <input type="hidden" name="EDDM_Details" id="eddm-hid-details">
         <input type="hidden" name="EDDM_Estimate" id="eddm-hid-estimate">
@@ -1672,7 +1676,8 @@ document.getElementById('quote-form').addEventListener('submit', async function(
   btn.disabled = true;
   try {
     const res = await fetch(this.action, { method:'POST', body: new FormData(this), headers:{'Accept':'application/json'} });
-    if (res.ok) { this.style.display = 'none'; document.getElementById('success-msg').classList.add('show'); }
+    const data = await res.json();
+    if (data.success) { this.style.display = 'none'; document.getElementById('success-msg').classList.add('show'); }
     else { btn.textContent = 'Error — Please Call Us'; btn.disabled = false; }
   } catch { btn.textContent = 'Error — Please Call Us'; btn.disabled = false; }
 });
@@ -1984,7 +1989,7 @@ document.getElementById('eddm-form') && document.getElementById('eddm-form').add
   btn.disabled = true;
   try {
     const res = await fetch(this.action, { method:'POST', body: new FormData(this), headers:{'Accept':'application/json'} });
-    if (res.ok) { this.style.display = 'none'; document.getElementById('eddm-success').classList.add('show'); }
+    const data = await res.json(); if (data.success) { this.style.display = 'none'; document.getElementById('eddm-success').classList.add('show'); }
     else { btn.textContent = 'Error — Please Call Us'; btn.disabled = false; }
   } catch { btn.textContent = 'Error — Please Call Us'; btn.disabled = false; }
 });
@@ -2099,7 +2104,7 @@ document.getElementById('eddm-form') && document.getElementById('eddm-form').add
   btn.disabled = true;
   try {
     const res = await fetch(this.action, { method:'POST', body: new FormData(this), headers:{'Accept':'application/json'} });
-    if (res.ok) { this.style.display = 'none'; document.getElementById('eddm-success').classList.add('show'); }
+    const data = await res.json(); if (data.success) { this.style.display = 'none'; document.getElementById('eddm-success').classList.add('show'); }
     else { btn.textContent = 'Error — Please Call Us'; btn.disabled = false; }
   } catch { btn.textContent = 'Error — Please Call Us'; btn.disabled = false; }
 });
