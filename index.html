@@ -351,6 +351,123 @@
   footer address a:hover { color: var(--white); }
   footer .footer-copy { margin-top: 1.5rem; font-size: 0.72rem; color: var(--steel); border-top: 1px solid #1f3348; padding-top: 1rem; }
 
+  /* ── STICKY NAV ── */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    background: var(--navy);
+    border-bottom: 2px solid var(--sky);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .sticky-nav::-webkit-scrollbar { display: none; }
+  .sticky-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: max-content;
+  }
+  .sticky-nav ul li a {
+    display: block;
+    padding: 0.7rem 1.1rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sky-light);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s, background 0.2s;
+    border-right: 1px solid rgba(168,207,224,0.15);
+  }
+  .sticky-nav ul li a:hover { color: var(--white); background: rgba(168,207,224,0.08); }
+  .sticky-nav ul li a.active { color: var(--sky); border-bottom: 2px solid var(--sky); }
+
+  /* ── INFO SECTIONS (FAQ, Guidelines, Shipping, EDDM) ── */
+  .info-section { padding: 4rem 2rem; }
+  .alt-bg { background: var(--sky-pale); border-top: 2px solid var(--sky); border-bottom: 2px solid var(--sky); }
+  .info-inner { max-width: 960px; margin: 0 auto; }
+
+  /* FAQ */
+  .faq-grid { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem; }
+  .faq-item { border: 1px solid var(--sky); background: var(--white); overflow: hidden; }
+  .faq-q {
+    width: 100%; text-align: left; padding: 1rem 1.25rem;
+    font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700;
+    color: var(--navy); background: none; border: none; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: background 0.2s;
+  }
+  .faq-q:hover { background: var(--sky-pale); }
+  .faq-q.open { background: var(--sky-pale); color: var(--accent); }
+  .faq-arrow { font-size: 0.7rem; color: var(--accent); transition: transform 0.3s; flex-shrink: 0; margin-left: 1rem; }
+  .faq-q.open .faq-arrow { transform: rotate(180deg); }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    font-size: 1rem; line-height: 1.8; color: var(--text-soft);
+    padding: 0 1.25rem; transition: max-height 0.4s ease, padding 0.3s ease;
+  }
+  .faq-a.open { max-height: 300px; padding: 0.75rem 1.25rem 1.25rem; }
+
+  /* GUIDELINES */
+  .guidelines-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
+  .guideline-card { background: var(--white); border: 1px solid var(--sky); border-top: 4px solid var(--accent); padding: 1.5rem; }
+  .guideline-icon { font-size: 1.8rem; margin-bottom: 0.75rem; display: block; }
+  .guideline-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+  .guideline-card p { font-size: 0.92rem; line-height: 1.7; color: var(--text-soft); }
+  .guidelines-note { text-align: center; font-style: italic; color: var(--text-soft); font-size: 1rem; margin-top: 2rem; padding: 1rem; border-top: 1px solid var(--sky); }
+
+  /* SHIPPING */
+  .shipping-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .shipping-card { background: var(--white); border: 1px solid var(--sky); border-top: 4px solid var(--accent); padding: 1.25rem; text-align: center; }
+  .shipping-weight { font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--steel); margin-bottom: 0.4rem; }
+  .shipping-price { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: var(--navy); margin-bottom: 0.3rem; }
+  .shipping-method { font-family: 'Oswald', sans-serif; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+  .shipping-example { font-size: 0.8rem; color: var(--text-soft); font-style: italic; }
+  .shipping-notes { background: var(--white); border: 1px solid var(--sky); padding: 1.25rem 1.5rem; margin-top: 1rem; }
+  .shipping-notes p { font-size: 0.95rem; line-height: 1.8; color: var(--text-soft); margin-bottom: 0.4rem; }
+  .shipping-notes p:last-child { margin-bottom: 0; }
+
+  /* EDDM */
+  .eddm-how { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+  .eddm-step { display: flex; align-items: center; gap: 0.75rem; background: var(--white); border: 1px solid var(--sky); padding: 1rem; }
+  .eddm-num { width: 32px; height: 32px; background: var(--accent); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Oswald', sans-serif; font-size: 0.9rem; font-weight: 500; flex-shrink: 0; }
+  .eddm-step p { font-size: 0.9rem; color: var(--text-soft); line-height: 1.4; }
+  .eddm-calculator { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+  .eddm-col { display: flex; flex-direction: column; gap: 1.25rem; }
+  .eddm-routes-label { font-family: 'Oswald', sans-serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--steel); display: block; margin-bottom: 0.4rem; }
+  .eddm-select-all-wrap { background: var(--sky-pale); padding: 0.6rem 0.9rem; border: 1px solid var(--sky); margin-bottom: 0.5rem; }
+  .eddm-checkbox-label { display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.9rem; color: var(--text); }
+  .eddm-checkbox-label input { accent-color: var(--accent); width: 16px; height: 16px; }
+  #eddm-routes-list { display: flex; flex-direction: column; gap: 0.4rem; max-height: 280px; overflow-y: auto; border: 1px solid var(--sky); padding: 0.5rem; background: var(--white); }
+  .eddm-route-row { display: flex; align-items: center; justify-content: space-between; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--sky-light); }
+  .eddm-route-row:last-child { border-bottom: none; }
+  .eddm-route-row label { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.92rem; color: var(--text); flex: 1; }
+  .eddm-route-row input { accent-color: var(--accent); width: 15px; height: 15px; }
+  .eddm-route-pieces { font-family: 'Oswald', sans-serif; font-size: 0.72rem; color: var(--text-soft); letter-spacing: 0.05em; }
+  .eddm-totals { background: var(--navy); color: var(--white); padding: 1.5rem; }
+  .eddm-total-row { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(168,207,224,0.2); font-size: 0.95rem; color: var(--sky-light); }
+  .eddm-total-row.total { border-bottom: none; margin-top: 0.5rem; padding-top: 0.75rem; border-top: 2px solid var(--sky); }
+  .eddm-total-row.total span { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 900; color: var(--white); }
+  .eddm-disclaimer { font-size: 0.78rem; font-style: italic; color: var(--rule); margin-top: 1rem; line-height: 1.5; }
+  .eddm-contact { margin-top: 1.5rem; }
+  .eddm-sizes-info { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--sky); }
+  .eddm-sizes-info h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--navy); margin-bottom: 0.5rem; }
+  .eddm-sizes-info p { font-size: 0.9rem; color: var(--text-soft); margin-bottom: 1rem; font-style: italic; }
+  .eddm-sizes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; }
+  .eddm-size-item { background: var(--white); border: 1px solid var(--sky); padding: 0.75rem 1rem; }
+  .eddm-size-item strong { display: block; font-family: 'Playfair Display', serif; color: var(--navy); margin-bottom: 0.2rem; }
+  .eddm-size-item span { font-size: 0.82rem; color: var(--text-soft); }
+
+  @media (max-width: 640px) {
+    .eddm-calculator { grid-template-columns: 1fr; }
+    .guidelines-grid { grid-template-columns: 1fr; }
+    .shipping-grid { grid-template-columns: 1fr 1fr; }
+  }
+
   /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
@@ -376,6 +493,19 @@
   Delight, Arkansas &nbsp;·&nbsp; Est. 1925 &nbsp;·&nbsp; <a href="tel:8703792421">870-379-2421</a>
 </div>
 
+<!-- STICKY NAV -->
+<nav class="sticky-nav" id="sticky-nav">
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#services">Get a Quote</a></li>
+    <li><a href="#eddm">EDDM</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#file-guidelines">File Guidelines</a></li>
+    <li><a href="#shipping">Shipping</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
 <!-- NAMEPLATE -->
 <header class="nameplate">
   <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
@@ -388,7 +518,7 @@
   <p class="tagline">Crafted with care. Printed with pride.</p>
   <p class="est">Delight, Arkansas &nbsp;·&nbsp; Established 1925</p>
   <div class="hero-cta">
-    <a href="#get-a-quote">Get a Quote ↓</a>
+    <a href="#services">Get a Quote ↓</a>
   </div>
 </header>
 
@@ -404,148 +534,74 @@
   </p>
 </section>
 
-<!-- SERVICES -->
-<section class="services-section">
+<!-- SERVICES + QUOTE - CONSOLIDATED -->
+<section class="services-section" id="services">
   <div class="divider"><span class="divider-text">What We Print</span></div>
-  <h2 class="section-heading reveal">Our Services</h2>
-  <p class="section-sub reveal">Click any service below to get an instant quote.</p>
+  <h2 class="section-heading reveal">Our Services & Pricing</h2>
+  <p class="section-sub reveal">Click any service to get an instant estimate.</p>
   <div class="services-grid">
-    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('business-cards')">
+    <a class="service-card reveal" href="#quote-panel" onclick="selectFromCard('business-cards')">
       <span class="service-icon">🪪</span>
       <h3>Business Cards</h3>
       <p>Classic and custom business cards that make a lasting first impression.</p>
       <span class="card-cta">Get a Quote →</span>
     </a>
-    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('rack-cards')">
+    <a class="service-card reveal" href="#quote-panel" onclick="selectFromCard('rack-cards')">
       <span class="service-icon">📄</span>
       <h3>Rack Cards &amp; Flyers</h3>
       <p>Full-color 4×9 rack cards designed to stand out in any display.</p>
       <span class="card-cta">Get a Quote →</span>
     </a>
-    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('envelopes-business')">
+    <a class="service-card reveal" href="#quote-panel" onclick="selectFromCard('envelopes-business')">
       <span class="service-icon">✉️</span>
       <h3>Business Envelopes</h3>
       <p>No. 10, No. 9 & 6¾ — regular, security, window & peel and seal options.</p>
       <span class="card-cta">Get a Quote →</span>
     </a>
-    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('envelopes-greeting')">
+    <a class="service-card reveal" href="#quote-panel" onclick="selectFromCard('envelopes-greeting')">
       <span class="service-icon">💌</span>
       <h3>Greeting Envelopes</h3>
       <p>A7 & A7+ for announcements, invitations, and cards.</p>
       <span class="card-cta">Get a Quote →</span>
     </a>
-    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('invitations')">
+    <a class="service-card reveal" href="#quote-panel" onclick="selectFromCard('invitations')">
       <span class="service-icon">🎉</span>
       <h3>Invitations</h3>
       <p>4×6, 5×7 & 6×9 — premium stocks including linen. Perfect for any occasion.</p>
       <span class="card-cta">Get a Quote →</span>
     </a>
-    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('books')">
+    <a class="service-card reveal" href="#quote-panel" onclick="selectFromCard('books')">
       <span class="service-icon">📖</span>
       <h3>Paperback Books</h3>
       <p>Self-published paperbacks printed locally. No big-press runaround.</p>
       <span class="card-cta">Get a Quote →</span>
     </a>
-    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('saddle')">
+    <a class="service-card reveal" href="#quote-panel" onclick="selectFromCard('saddle')">
       <span class="service-icon">📰</span>
       <h3>Saddle Stitch</h3>
       <p>Magazines, booklets, and programs — stitched and ready to distribute.</p>
       <span class="card-cta">Get a Quote →</span>
     </a>
-    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('eddm')">
+    <a class="service-card reveal" href="#eddm">
       <span class="service-icon">📬</span>
       <h3>EDDM Mailers</h3>
       <p>Every Door Direct Mail — reach every door in your community.</p>
       <span class="card-cta">Get a Quote →</span>
     </a>
-    <a class="service-card reveal" href="#get-a-quote" onclick="scrollToQuote('custom')">
+    <a class="service-card reveal" href="#quote-panel" onclick="selectFromCard('custom')">
       <span class="service-icon">🖨️</span>
       <h3>Custom Print</h3>
       <p>Don't see what you need? We've been solving printing problems for 100 years. Just ask.</p>
       <span class="card-cta">Send an Inquiry →</span>
     </a>
   </div>
-</section>
 
-<!-- PUBLISHING -->
-<section class="publishing-section">
-  <div class="publishing-inner">
-    <div class="divider"><span class="divider-text">Authors &amp; Writers</span></div>
-    <h2 class="reveal">Print Your Book — Locally</h2>
-    <div class="pub-rule"></div>
-    <p class="reveal">Have a story to tell? Alexander Printing specializes in short-run paperback printing for self-published authors. Whether it's a family history, a community memoir, or your first novel — we'll help you hold your book in your hands, printed right here in Delight.</p>
-    <p class="reveal">No big-city middlemen. No minimum orders that break the bank. Just honest printing from a press that's been in Arkansas for a century.</p>
-  </div>
-</section>
-
-<!-- QUOTE CALCULATOR -->
-<section class="quote-section-wrap" id="get-a-quote">
-  <div class="divider"><span class="divider-text">Instant Estimates</span></div>
-  <h2 class="section-heading reveal">Get a Quote</h2>
-  <p class="section-sub reveal">Select a product for an instant estimate — we'll confirm your exact price before any job is started.</p>
-
-  <div class="calculator-wrap">
-    <!-- STEPS -->
+  <!-- QUOTE CALCULATOR EMBEDDED -->
+  <div class="calculator-wrap" id="quote-panel" style="margin-top:2.5rem; display:none;">
     <div class="steps">
-      <div class="step active" id="step1-ind"><span class="step-num">1</span><span>Product</span></div>
-      <div class="step" id="step2-ind"><span class="step-num">2</span><span>Options</span></div>
-      <div class="step" id="step3-ind"><span class="step-num">3</span><span>Quote</span></div>
+      <div class="step active" id="step1-ind"><span class="step-num">1</span><span>Options</span></div>
+      <div class="step" id="step2-ind"><span class="step-num">2</span><span>Quote</span></div>
     </div>
-
-    <!-- PANEL 1 -->
-    <div class="panel active" id="panel1">
-      <div class="panel-title">What can we print for you?</div>
-      <div class="panel-sub">Choose a product to get started.</div>
-      <div class="product-grid">
-        <button class="product-btn" onclick="selectProduct('business-cards')">
-          <span class="product-icon">🪪</span>
-          <span class="product-name">Business Cards</span>
-          <span class="product-desc">Standard & premium stocks</span>
-        </button>
-        <button class="product-btn" onclick="selectProduct('rack-cards')">
-          <span class="product-icon">📄</span>
-          <span class="product-name">Rack Cards</span>
-          <span class="product-desc">4×9 full color</span>
-        </button>
-        <button class="product-btn" onclick="selectProduct('envelopes-business')">
-          <span class="product-icon">✉️</span>
-          <span class="product-name">Business Envelopes</span>
-          <span class="product-desc">#10, #9 & 6¾</span>
-        </button>
-        <button class="product-btn" onclick="selectProduct('envelopes-greeting')">
-          <span class="product-icon">💌</span>
-          <span class="product-name">Greeting Envelopes</span>
-          <span class="product-desc">A7 & A7+</span>
-        </button>
-        <button class="product-btn" onclick="selectProduct('invitations')">
-          <span class="product-icon">🎉</span>
-          <span class="product-name">Invitations</span>
-          <span class="product-desc">4×6, 5×7 & 6×9</span>
-        </button>
-        <button class="product-btn" onclick="selectProduct('books')">
-          <span class="product-icon">📖</span>
-          <span class="product-name">Paperback Books</span>
-          <span class="product-desc">Perfect bound</span>
-        </button>
-        <button class="product-btn" onclick="selectProduct('saddle')">
-          <span class="product-icon">📰</span>
-          <span class="product-name">Saddle Stitch</span>
-          <span class="product-desc">Magazines & booklets</span>
-        </button>
-        <button class="product-btn" onclick="selectProduct('eddm')">
-          <span class="product-icon">📬</span>
-          <span class="product-name">EDDM Mailers</span>
-          <span class="product-desc">Every Door Direct Mail</span>
-        </button>
-        <button class="product-btn" onclick="selectProduct('custom')">
-          <span class="product-icon">🖨️</span>
-          <span class="product-name">Custom Print</span>
-          <span class="product-desc">Something else? Ask us</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- PANEL 2 -->
     <div class="panel" id="panel2">
 
       <!-- Business Cards -->
@@ -757,15 +813,6 @@
           </div>
         </div>
       </div>
-      <div id="opts-eddm" class="product-opts" style="display:none">
-        <div class="panel-title">EDDM Mailers</div>
-        <div class="panel-sub">Every Door Direct Mail — custom quoted per job.</div>
-        <div class="custom-quote-box">
-          <h3>Custom Quote Required</h3>
-          <p>EDDM pricing depends on carrier routes, quantity, and piece size. Fill out your contact info and we'll get back to you promptly.</p>
-        </div>
-      </div>
-
       <!-- Custom Print -->
       <div id="opts-custom" class="product-opts" style="display:none">
         <div class="panel-title">Custom Print Inquiry</div>
@@ -815,7 +862,7 @@
           <div class="form-group"><label>Additional Notes</label><input type="text" name="Notes" placeholder="File ready to print? Special requests?"></div>
         </div>
         <div class="btn-group">
-          <button type="button" class="btn btn-secondary" onclick="goToPanel(2)">← Back</button>
+          <button type="button" class="btn btn-secondary" onclick="goToPanel(1)">← Back</button>
           <button type="submit" class="btn btn-primary">Send Quote Request →</button>
         </div>
       </form>
@@ -827,10 +874,378 @@
     </div>
 
   </div><!-- end calculator-wrap -->
+</section><!-- end services+quote -->
+
+<!-- FAQ SECTION -->
+<section class="info-section" id="faq">
+  <div class="info-inner">
+    <div class="divider"><span class="divider-text">Common Questions</span></div>
+    <h2 class="section-heading reveal">Frequently Asked Questions</h2>
+    <p class="section-sub reveal">100 years of printing means we've heard just about everything.</p>
+    <div class="faq-grid">
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How long does printing take?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Most standard jobs — business cards, rack cards, envelopes — are ready within 3–7 business days once we have your print-ready file. Books and larger orders may take 10–14 business days. Rush turnaround is available — just ask.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do I need a print-ready file or can you help with design?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          We print from customer-supplied files. If your file is ready to print we can get started right away. If you need design help we have connections with great local designers who can help get you print-ready.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What file types do you accept?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          PDF is preferred. We also accept JPG, PNG, and most common design formats. When in doubt just ask — we've seen just about everything in 100 years.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What's the minimum order?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          It depends on the product. Business cards start at 100, books and invitations at 24. Some products have no minimum. Use our quote calculator or give us a call and we'll let you know.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you ship?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Yes — we ship via UPS Ground and USPS to the continental United States (lower 48 states only). Flat rate shipping starts at $8. Local customers are always welcome to pick up at our shop in Delight.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do I pay?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          We accept all major credit cards. Payment is due before printing begins.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you offer color and black & white printing?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Yes — both full color and black & white are available on most products. Just select your preference in the quote calculator.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can you print double sided?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Yes — most products are available in single or double sided. Just select your preference in the quote calculator or let us know when you reach out.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What if I'm not happy with my order?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          We take quality seriously and stand behind our work. Before any job goes to press we ask customers to review and approve their artwork. If a print error occurs on our end we will absolutely make it right. However approved files that are printed as submitted are the customer's responsibility — so please review your proof carefully before giving the green light.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you print banners or yard signs?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Yes — through our trusted third-party partners we can help you with banners and yard signs. We're happy to assist you from start to finish. Just ask us about availability and pricing.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you carry Bibles?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Yes! We carry and can order Bibles in both single copies and bulk quantities. Whether you need one for a gift or hundreds for a church or organization we can help. Just ask us about available versions and pricing.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can you print a name on the cover of a Bible?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          We are not able to print or emboss names directly on Bible covers in house. However we can order pre-personalized Bibles through our suppliers for certain versions — just ask us what's available and we'll do our best to find what you're looking for.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you offer t-shirts, hats, or apparel?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          We don't print apparel in house but we're happy to point you toward a trusted local company that does great work. Just ask us for a referral.
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
+<!-- FILE SUBMISSION GUIDELINES -->
+<section class="info-section alt-bg" id="file-guidelines">
+  <div class="info-inner">
+    <div class="divider"><span class="divider-text">Submitting Your Files</span></div>
+    <h2 class="section-heading reveal">File Submission Guidelines</h2>
+    <p class="section-sub reveal">A little preparation goes a long way toward a perfect print job.</p>
+
+    <div class="guidelines-grid">
+
+      <div class="guideline-card reveal">
+        <div class="guideline-icon">📐</div>
+        <h3>Give Your Design Some Breathing Room</h3>
+        <p>Make sure your design extends about <strong>⅛ inch (0.125")</strong> beyond the edge on all sides. This extra space gets trimmed away during finishing and ensures nothing important gets cut off. Think of it as a safety margin around your artwork.</p>
+      </div>
+
+      <div class="guideline-card reveal">
+        <div class="guideline-icon">🔒</div>
+        <h3>Keep Important Content Away From the Edges</h3>
+        <p>Text, logos, and anything you don't want trimmed should stay at least <strong>⅛ inch inside</strong> the final edge. Printing and cutting involve tiny variations — keeping your content centered protects it.</p>
+      </div>
+
+      <div class="guideline-card reveal">
+        <div class="guideline-icon">🖼️</div>
+        <h3>Use High Resolution Images</h3>
+        <p>Images should be at least <strong>300 DPI</strong> at their final printed size. Images pulled from websites are usually only 72 DPI and will appear blurry when printed. If it looks sharp on your screen at full zoom it may still print poorly — when in doubt ask us.</p>
+      </div>
+
+      <div class="guideline-card reveal">
+        <div class="guideline-icon">🎨</div>
+        <h3>Colors Print Differently Than Screens</h3>
+        <p>Screens display color using light (RGB) while printers use ink (CMYK). Bright blues, greens, and oranges in particular can shift when printed. For the most accurate results set your file to <strong>CMYK color mode</strong> before sending.</p>
+      </div>
+
+      <div class="guideline-card reveal">
+        <div class="guideline-icon">📄</div>
+        <h3>PDF is Our Preferred Format</h3>
+        <p>Save your file as a <strong>print-ready PDF</strong> with fonts embedded. This preserves your layout exactly as designed regardless of what software we use to open it. We also accept JPG, PNG, and most common design file formats.</p>
+      </div>
+
+      <div class="guideline-card reveal">
+        <div class="guideline-icon">✅</div>
+        <h3>Proof Before You Send</h3>
+        <p>Take a few minutes to review your file carefully before submitting — check spelling, phone numbers, addresses, and that all images look sharp. Once a job is approved and goes to press changes aren't possible. <strong>A second set of eyes never hurts.</strong></p>
+      </div>
+
+    </div>
+
+    <p class="guidelines-note reveal">Not sure if your file is ready? Send it over anyway and we'll take a look. After 100 years we've helped a lot of people get print-ready.</p>
+  </div>
+</section>
+
+<!-- SHIPPING SECTION -->
+<section class="info-section" id="shipping">
+  <div class="info-inner">
+    <div class="divider"><span class="divider-text">Shipping & Delivery</span></div>
+    <h2 class="section-heading reveal">Shipping Information</h2>
+    <p class="section-sub reveal">We ship UPS Ground and USPS to the continental United States.</p>
+
+    <div class="shipping-grid reveal">
+      <div class="shipping-card">
+        <div class="shipping-weight">Under 2 lbs</div>
+        <div class="shipping-price">$8</div>
+        <div class="shipping-method">USPS Ground</div>
+        <div class="shipping-example">Business cards, small envelope orders</div>
+      </div>
+      <div class="shipping-card">
+        <div class="shipping-weight">2–10 lbs</div>
+        <div class="shipping-price">$18</div>
+        <div class="shipping-method">UPS Ground</div>
+        <div class="shipping-example">Rack cards, medium orders</div>
+      </div>
+      <div class="shipping-card">
+        <div class="shipping-weight">10–25 lbs</div>
+        <div class="shipping-price">$28</div>
+        <div class="shipping-method">UPS Ground</div>
+        <div class="shipping-example">Large rack card orders, small book runs</div>
+      </div>
+      <div class="shipping-card">
+        <div class="shipping-weight">25–50 lbs</div>
+        <div class="shipping-price">$42</div>
+        <div class="shipping-method">UPS Ground</div>
+        <div class="shipping-example">Book orders, large print runs</div>
+      </div>
+      <div class="shipping-card">
+        <div class="shipping-weight">50+ lbs</div>
+        <div class="shipping-price">Call</div>
+        <div class="shipping-method">Freight Quote</div>
+        <div class="shipping-example">Very large orders</div>
+      </div>
+    </div>
+
+    <div class="shipping-notes reveal">
+      <p>📦 <strong>Local pickup</strong> is always available at our shop in Delight, Arkansas at no charge.</p>
+      <p>🗺️ We ship to the <strong>continental United States only</strong> (lower 48 states).</p>
+      <p>💳 If actual shipping comes in lower than the flat rate we'll refund the difference.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EDDM SECTION -->
+<section class="info-section alt-bg" id="eddm">
+  <div class="info-inner">
+    <div class="divider"><span class="divider-text">Every Door Direct Mail</span></div>
+    <h2 class="section-heading reveal">EDDM Mailers</h2>
+    <p class="section-sub reveal">Reach every door in your community. We handle printing, bundling, paperwork, and post office delivery — you just approve the design.</p>
+
+    <div class="eddm-how reveal">
+      <div class="eddm-step"><span class="eddm-num">1</span><p>Select your city and routes below</p></div>
+      <div class="eddm-step"><span class="eddm-num">2</span><p>Choose your mailer size and stock</p></div>
+      <div class="eddm-step"><span class="eddm-num">3</span><p>We print, bundle, and deliver to the post office</p></div>
+      <div class="eddm-step"><span class="eddm-num">4</span><p>USPS delivers to every selected door</p></div>
+    </div>
+
+    <div class="eddm-calculator reveal">
+      <div class="eddm-col">
+        <div class="form-group">
+          <label>Select City</label>
+          <select id="eddm-city" onchange="updateEddmRoutes()">
+            <option value="">-- Choose a city --</option>
+            <option value="delight">Delight (71940)</option>
+            <option value="murfreesboro">Murfreesboro (71958)</option>
+            <option value="glenwood">Glenwood (71943)</option>
+            <option value="nashville">Nashville (71852)</option>
+            <option value="prescott">Prescott (71857)</option>
+            <option value="hope">Hope (71801)</option>
+            <option value="arkadelphia">Arkadelphia (71923)</option>
+          </select>
+        </div>
+
+        <div id="eddm-routes-wrap" style="display:none">
+          <label class="eddm-routes-label">Select Routes</label>
+          <div class="eddm-select-all-wrap">
+            <label class="eddm-checkbox-label">
+              <input type="checkbox" id="eddm-select-all" onchange="toggleAllRoutes(this)">
+              <span>Select All Routes</span>
+            </label>
+          </div>
+          <div id="eddm-routes-list"></div>
+        </div>
+      </div>
+
+      <div class="eddm-col">
+        <div class="form-group">
+          <label>Mailer Size</label>
+          <select id="eddm-size">
+            <option value="6.25x9">6.25×9 — Budget Friendly</option>
+            <option value="6.5x9">6.5×9 — Compact</option>
+            <option value="6.25x11">6.25×11 — Popular for Real Estate</option>
+            <option value="6.5x12">6.5×12 — Longer Format</option>
+            <option value="8.5x11" selected>8.5×11 — Standard Letter</option>
+            <option value="9x12">9×12 — High Impact</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Stock</label>
+          <select id="eddm-stock">
+            <option value="c1s">C1S Gloss (Full Color)</option>
+            <option value="vellum">Vellum Bristol (B&W — Budget)</option>
+          </select>
+        </div>
+
+        <div class="eddm-totals" id="eddm-totals" style="display:none">
+          <div class="eddm-total-row">
+            <span>Total Pieces</span>
+            <span id="eddm-pieces">0</span>
+          </div>
+          <div class="eddm-total-row">
+            <span>Printing Estimate</span>
+            <span id="eddm-print-cost">$0.00</span>
+          </div>
+          <div class="eddm-total-row">
+            <span>USPS Postage</span>
+            <span id="eddm-postage">$0.00</span>
+          </div>
+          <div class="eddm-total-row">
+            <span>Handling Fee</span>
+            <span id="eddm-handling">$150.00</span>
+          </div>
+          <div class="eddm-total-row total">
+            <span>Estimated Total</span>
+            <span id="eddm-total">$0.00</span>
+          </div>
+          <p class="eddm-disclaimer">Estimate includes printing, bundling, paperwork & post office delivery. Final price confirmed before printing begins. USPS postage rate: $0.234/piece.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="eddm-contact-wrap" style="display:none" class="eddm-contact">
+      <div class="form-divider"><span>Request Your EDDM Quote</span></div>
+      <form id="eddm-form" action="https://formspree.io/f/xkovyekk" method="POST">
+        <input type="hidden" name="Product" value="EDDM Mailers">
+        <input type="hidden" name="EDDM_Details" id="eddm-hid-details">
+        <input type="hidden" name="EDDM_Estimate" id="eddm-hid-estimate">
+        <div class="form-row">
+          <div class="form-group"><label>Your Name *</label><input type="text" name="Name" required placeholder="Full name"></div>
+          <div class="form-group"><label>Phone Number *</label><input type="tel" name="Phone" required placeholder="870-555-0000"></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Email Address</label><input type="email" name="Email" placeholder="Optional but helpful"></div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Additional Notes</label><input type="text" name="Notes" placeholder="File ready? Special requests? Out of area delivery needed?"></div>
+        </div>
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary">Send EDDM Request →</button>
+        </div>
+      </form>
+      <div class="success-msg" id="eddm-success">
+        <h3>✓ EDDM Request Received!</h3>
+        <p>We'll be in touch shortly to confirm your quote and next steps. Questions? Call us at <strong>870-379-2421</strong>.</p>
+      </div>
+    </div>
+
+    <div class="eddm-sizes-info reveal">
+      <h3>Available Mailer Sizes</h3>
+      <p>All EDDM mailers must meet USPS requirements: minimum 10.5" long or 6.125" tall, maximum 15"×12", under 3.3 oz.</p>
+      <div class="eddm-sizes-grid">
+        <div class="eddm-size-item"><strong>6.25×9 / 6.5×9</strong><span>Budget-friendly minimum size</span></div>
+        <div class="eddm-size-item"><strong>6.25×11 / 6.5×12</strong><span>Popular for real estate</span></div>
+        <div class="eddm-size-item"><strong>8.5×11</strong><span>Menus & detailed info</span></div>
+        <div class="eddm-size-item"><strong>9×12</strong><span>High-end promotions</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
 <!-- PHONE CTA -->
-<section class="phone-cta-section">
+<section class="phone-cta-section" id="contact">
   <h2 class="reveal">Prefer to Call?</h2>
   <p class="reveal">Give us a call and tell us what you need. We'll give you a straight answer and a fair price.</p>
   <a href="tel:8703792421" class="cta-phone reveal">870-379-2421</a>
@@ -971,32 +1386,34 @@ function getMarkup(qty) {
 // ── STATE ─────────────────────────────────────────────────────────
 let currentProduct = null;
 
-// ── SCROLL + SELECT FROM SERVICE CARD ────────────────────────────
-function scrollToQuote(product) {
+// ── SELECT FROM SERVICE CARD ──────────────────────────────────────
+function selectFromCard(product) {
+  currentProduct = product;
+  // Show the quote panel
+  const quotePanel = document.getElementById('quote-panel');
+  quotePanel.style.display = 'block';
+  // Show correct opts
+  document.querySelectorAll('.product-opts').forEach(o => o.style.display = 'none');
+  const opts = document.getElementById('opts-' + product);
+  if (opts) opts.style.display = 'block';
+  updateCalcBtn();
+  updateEnvOptions();
+  updateGreetQty();
+  goToPanel(1);
+  // Highlight selected card
+  document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+  // Scroll to panel smoothly
   setTimeout(() => {
-    currentProduct = product;
-    document.querySelectorAll('.product-opts').forEach(o => o.style.display = 'none');
-    const opts = document.getElementById('opts-' + product);
-    if (opts) {
-      opts.style.display = 'block';
-      updateCalcBtn();
-      goToPanel(2);
-    } else {
-      goToPanel(1);
-      setTimeout(() => {
-        const btn = document.querySelector(`.product-btn[onclick*="${product}"]`);
-        if (btn) btn.click();
-      }, 100);
-    }
-    updateEnvOptions();
-    updateGreetQty();
-  }, 400);
+    quotePanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 50);
 }
 
 // ── NAVIGATION ────────────────────────────────────────────────────
 function goToPanel(n) {
-  document.querySelectorAll('.panel').forEach((p,i) => p.classList.toggle('active', i === n-1));
-  document.querySelectorAll('.step').forEach((s,i) => {
+  // n=1 → panel2 (options), n=2 → panel3 (quote)
+  const panels = [document.getElementById('panel2'), document.getElementById('panel3')];
+  panels.forEach((p, i) => { if(p) p.classList.toggle('active', i === n-1); });
+  document.querySelectorAll('.step').forEach((s, i) => {
     s.classList.remove('active','done');
     if (i < n-1) s.classList.add('done');
     if (i === n-1) s.classList.add('active');
@@ -1005,20 +1422,11 @@ function goToPanel(n) {
 
 function goBack() {
   goToPanel(1);
-  document.querySelectorAll('.product-btn').forEach(b => b.classList.remove('selected'));
 }
 
-// ── PRODUCT SELECTION ─────────────────────────────────────────────
+// ── PRODUCT SELECTION (legacy - kept for any remaining references) ─
 function selectProduct(id) {
-  currentProduct = id;
-  document.querySelectorAll('.product-btn').forEach(b => b.classList.remove('selected'));
-  event.currentTarget.classList.add('selected');
-  document.querySelectorAll('.product-opts').forEach(o => o.style.display = 'none');
-  document.getElementById('opts-' + id).style.display = 'block';
-  updateCalcBtn();
-  goToPanel(2);
-  updateEnvOptions();
-  updateGreetQty();
+  selectFromCard(id);
 }
 
 function updateCalcBtn() {
@@ -1045,7 +1453,7 @@ function goToContactDirect() {
     ? "EDDM pricing varies by route and quantity. We'll get back to you promptly."
     : "Tell us about your project below and we'll get back to you with a price.";
   document.getElementById('toggle-btn') && (document.getElementById('toggle-btn').style.display = 'none');
-  goToPanel(3);
+  goToPanel(2);
 }
 
 // ── CALCULATE ─────────────────────────────────────────────────────
@@ -1242,7 +1650,7 @@ function calculateQuote() {
   document.getElementById('hid-specs').value = specs;
   document.getElementById('estimate-box').classList.add('visible');
 
-  goToPanel(3);
+  goToPanel(2);
 }
 
 // ── FORM SUBMIT ───────────────────────────────────────────────────
@@ -1269,9 +1677,232 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+// ── STICKY NAV ACTIVE STATE ───────────────────────────────────────
+const navLinks = document.querySelectorAll('.sticky-nav a');
+const sections = ['services','get-a-quote','eddm','faq','file-guidelines','shipping','contact'];
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 80) current = id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+
 // Init
 updateEnvOptions();
 updateGreetQty();
+
+// ── FAQ TOGGLE ────────────────────────────────────────────────────
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-q').forEach(b => {
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+  // Open clicked if it was closed
+  if (!isOpen) {
+    btn.classList.add('open');
+    answer.classList.add('open');
+  }
+}
+
+// ── EDDM CALCULATOR ───────────────────────────────────────────────
+const EDDM_ROUTES = {
+  delight: [
+    { id:'PBOX', label:'PO Boxes', pieces:114 },
+    { id:'R010', label:'Route R010', pieces:544 },
+    { id:'R011', label:'Route R011', pieces:170 }
+  ],
+  murfreesboro: [
+    { id:'PBOX', label:'PO Boxes', pieces:296 },
+    { id:'R001', label:'Route R001', pieces:543 },
+    { id:'R003', label:'Route R003', pieces:387 }
+  ],
+  glenwood: [
+    { id:'PBOX', label:'PO Boxes', pieces:649 },
+    { id:'R001', label:'Route R001', pieces:629 },
+    { id:'R002', label:'Route R002', pieces:663 },
+    { id:'R003', label:'Route R003', pieces:548 }
+  ],
+  nashville: [
+    { id:'C001', label:'City Route C001', pieces:445 },
+    { id:'C002', label:'City Route C002', pieces:449 },
+    { id:'PBOX', label:'PO Boxes', pieces:365 },
+    { id:'R001', label:'Route R001', pieces:568 },
+    { id:'R002', label:'Route R002', pieces:208 },
+    { id:'R003', label:'Route R003', pieces:564 },
+    { id:'R004', label:'Route R004', pieces:448 },
+    { id:'R005', label:'Route R005', pieces:520 },
+    { id:'R006', label:'Route R006', pieces:723 },
+    { id:'R007', label:'Route R007', pieces:573 }
+  ],
+  prescott: [
+    { id:'C001', label:'City Route C001', pieces:305 },
+    { id:'C002', label:'City Route C002', pieces:527 },
+    { id:'PBOX', label:'PO Boxes', pieces:212 },
+    { id:'R002', label:'Route R002', pieces:320 },
+    { id:'R003', label:'Route R003', pieces:312 },
+    { id:'R004', label:'Route R004', pieces:493 },
+    { id:'R005', label:'Route R005', pieces:359 },
+    { id:'R006', label:'Route R006', pieces:516 }
+  ],
+  hope: [
+    { id:'C001', label:'City Route C001', pieces:711 },
+    { id:'C002', label:'City Route C002', pieces:170 },
+    { id:'C004', label:'City Route C004', pieces:684 },
+    { id:'C005', label:'City Route C005', pieces:789 },
+    { id:'R001', label:'Route R001', pieces:507 },
+    { id:'R002', label:'Route R002', pieces:592 },
+    { id:'R003', label:'Route R003', pieces:602 },
+    { id:'R004', label:'Route R004', pieces:735 },
+    { id:'R005', label:'Route R005', pieces:565 },
+    { id:'R006', label:'Route R006', pieces:812 },
+    { id:'R007', label:'Route R007', pieces:782 },
+    { id:'R008', label:'Route R008', pieces:258 }
+  ],
+  arkadelphia: [
+    { id:'C003', label:'City Route C003', pieces:672 },
+    { id:'C004', label:'City Route C004', pieces:678 },
+    { id:'C005', label:'City Route C005', pieces:591 },
+    { id:'C006', label:'City Route C006', pieces:835 },
+    { id:'C007', label:'City Route C007', pieces:1177 },
+    { id:'C008', label:'City Route C008', pieces:577 },
+    { id:'PBOX', label:'PO Boxes', pieces:447 },
+    { id:'R001', label:'Route R001', pieces:629 },
+    { id:'R002', label:'Route R002', pieces:508 },
+    { id:'R003', label:'Route R003', pieces:577 },
+    { id:'R004', label:'Route R004', pieces:409 },
+    { id:'R005', label:'Route R005', pieces:631 }
+  ]
+};
+
+function getEddmMarkup(pieces) {
+  if (pieces < 1000) return 2.5;
+  if (pieces < 5000) return 2.2;
+  return 2.0;
+}
+
+function getEddmHandling(pieces) {
+  if (pieces < 500)  return 200;
+  if (pieces < 2001) return 175;
+  return 150;
+}
+
+function updateEddmRoutes() {
+  const city = document.getElementById('eddm-city').value;
+  const wrap = document.getElementById('eddm-routes-wrap');
+  const list = document.getElementById('eddm-routes-list');
+  const totals = document.getElementById('eddm-totals');
+  const contactWrap = document.getElementById('eddm-contact-wrap');
+
+  if (!city) { wrap.style.display = 'none'; totals.style.display = 'none'; return; }
+
+  const routes = EDDM_ROUTES[city];
+  wrap.style.display = 'block';
+  document.getElementById('eddm-select-all').checked = false;
+
+  list.innerHTML = routes.map(r => `
+    <div class="eddm-route-row">
+      <label class="eddm-checkbox-label">
+        <input type="checkbox" class="eddm-route-cb" data-pieces="${r.pieces}" onchange="updateEddmTotals()">
+        <span>${r.label}</span>
+      </label>
+      <span class="eddm-route-pieces">${r.pieces.toLocaleString()} pieces</span>
+    </div>
+  `).join('');
+
+  totals.style.display = 'none';
+  contactWrap.style.display = 'none';
+  updateEddmTotals();
+}
+
+function toggleAllRoutes(masterCb) {
+  document.querySelectorAll('.eddm-route-cb').forEach(cb => cb.checked = masterCb.checked);
+  updateEddmTotals();
+}
+
+function updateEddmTotals() {
+  const checked = document.querySelectorAll('.eddm-route-cb:checked');
+  const totals  = document.getElementById('eddm-totals');
+  const contactWrap = document.getElementById('eddm-contact-wrap');
+
+  if (checked.length === 0) {
+    totals.style.display = 'none';
+    contactWrap.style.display = 'none';
+    return;
+  }
+
+  let totalPieces = 0;
+  checked.forEach(cb => totalPieces += parseInt(cb.dataset.pieces));
+
+  const stock      = document.getElementById('eddm-stock').value;
+  const size       = document.getElementById('eddm-size').value;
+  const markup     = getEddmMarkup(totalPieces);
+  const handling   = getEddmHandling(totalPieces);
+
+  // Size upcharge
+  const sizeUpcharge = {
+    '6.25x9': 1.00, '6.5x9': 1.00,
+    '6.25x11': 1.03, '6.5x12': 1.03,
+    '8.5x11': 1.06,
+    '9x12': 1.09
+  }[size] || 1.00;
+
+  // Paper cost per PRINTED piece (2-up means each piece uses half a sheet)
+  const paperCostPerPiece = stock === 'c1s'
+    ? (0.14025 / 2)
+    : (0.10 / 2);
+
+  // Click cost per piece (1 side)
+  const clickCostPerPiece = stock === 'c1s' ? 0.07 : 0.015;
+
+  const costPerPiece  = paperCostPerPiece + clickCostPerPiece;
+  const totalCost     = totalPieces * costPerPiece;
+  const printPrice    = totalCost * markup * sizeUpcharge;
+  const postage       = totalPieces * 0.234;
+  const grandTotal    = printPrice + postage + handling;
+
+  document.getElementById('eddm-pieces').textContent   = totalPieces.toLocaleString();
+  document.getElementById('eddm-print-cost').textContent = '$' + printPrice.toFixed(2);
+  document.getElementById('eddm-postage').textContent  = '$' + postage.toFixed(2);
+  document.getElementById('eddm-handling').textContent = '$' + handling.toFixed(2);
+  document.getElementById('eddm-total').textContent    = '$' + grandTotal.toFixed(2);
+  totals.style.display = 'block';
+  contactWrap.style.display = 'block';
+
+  // Build hidden fields
+  const city = document.getElementById('eddm-city').value;
+  const selectedRoutes = Array.from(checked).map(cb => cb.closest('.eddm-route-row').querySelector('span:first-of-type').textContent).join(', ');
+  document.getElementById('eddm-hid-details').value = `City: ${city} | Size: ${size} | Stock: ${stock} | Routes: ${selectedRoutes} | Pieces: ${totalPieces}`;
+  document.getElementById('eddm-hid-estimate').value = `Print: $${printPrice.toFixed(2)} + Postage: $${postage.toFixed(2)} + Handling: $${handling} = Total: $${grandTotal.toFixed(2)}`;
+}
+
+// Update EDDM totals when size/stock changes
+document.addEventListener('DOMContentLoaded', function() {
+  const eddmSize  = document.getElementById('eddm-size');
+  const eddmStock = document.getElementById('eddm-stock');
+  if (eddmSize)  eddmSize.addEventListener('change', updateEddmTotals);
+  if (eddmStock) eddmStock.addEventListener('change', updateEddmTotals);
+});
+
+// EDDM form submit
+document.getElementById('eddm-form') && document.getElementById('eddm-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('[type="submit"]');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  try {
+    const res = await fetch(this.action, { method:'POST', body: new FormData(this), headers:{'Accept':'application/json'} });
+    if (res.ok) { this.style.display = 'none'; document.getElementById('eddm-success').classList.add('show'); }
+    else { btn.textContent = 'Error — Please Call Us'; btn.disabled = false; }
+  } catch { btn.textContent = 'Error — Please Call Us'; btn.disabled = false; }
+});
 </script>
 </body>
 </html>
