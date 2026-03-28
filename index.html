@@ -372,10 +372,10 @@
   }
   .sticky-nav ul li a {
     display: block;
-    padding: 0.7rem 1.1rem;
+    padding: 0.7rem 0.85rem;
     font-family: 'Oswald', sans-serif;
     font-size: 0.68rem;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--sky-light);
     text-decoration: none;
@@ -436,24 +436,45 @@
   .eddm-step { display: flex; align-items: center; gap: 0.75rem; background: var(--white); border: 1px solid var(--sky); padding: 1rem; }
   .eddm-num { width: 32px; height: 32px; background: var(--accent); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Oswald', sans-serif; font-size: 0.9rem; font-weight: 500; flex-shrink: 0; }
   .eddm-step p { font-size: 0.9rem; color: var(--text-soft); line-height: 1.4; }
-  .eddm-calculator { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
-  .eddm-col { display: flex; flex-direction: column; gap: 1.25rem; }
-  .eddm-routes-label { font-family: 'Oswald', sans-serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--steel); display: block; margin-bottom: 0.4rem; }
-  .eddm-select-all-wrap { background: var(--sky-pale); padding: 0.6rem 0.9rem; border: 1px solid var(--sky); margin-bottom: 0.5rem; }
-  .eddm-checkbox-label { display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.9rem; color: var(--text); }
-  .eddm-checkbox-label input { accent-color: var(--accent); width: 16px; height: 16px; }
-  #eddm-routes-list { display: flex; flex-direction: column; gap: 0.4rem; max-height: 280px; overflow-y: auto; border: 1px solid var(--sky); padding: 0.5rem; background: var(--white); }
-  .eddm-route-row { display: flex; align-items: center; justify-content: space-between; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--sky-light); }
+
+  /* Options row */
+  .eddm-options-row { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 1rem; align-items: end; margin-bottom: 1.5rem; }
+  .eddm-clear-wrap { display: flex; align-items: flex-end; }
+
+  /* Accordion */
+  .eddm-accordion { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem; }
+  .eddm-city-block { background: var(--white); border: 1px solid var(--sky); overflow: hidden; }
+  .eddm-city-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.85rem 1rem; cursor: pointer; background: var(--white);
+    border: none; width: 100%; text-align: left; transition: background 0.2s;
+  }
+  .eddm-city-header:hover { background: var(--sky-pale); }
+  .eddm-city-header.has-selection { background: var(--sky-pale); border-left: 4px solid var(--accent); }
+  .eddm-city-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--navy); }
+  .eddm-city-meta { font-size: 0.78rem; color: var(--text-soft); margin-top: 0.15rem; }
+  .eddm-city-toggle { font-size: 0.65rem; color: var(--accent); transition: transform 0.3s; flex-shrink: 0; margin-left: 0.5rem; }
+  .eddm-city-toggle.open { transform: rotate(180deg); }
+  .eddm-city-routes { display: none; padding: 0 0.75rem 0.75rem; border-top: 1px solid var(--sky-light); }
+  .eddm-city-routes.open { display: block; }
+  .eddm-city-select-all { padding: 0.5rem 0; border-bottom: 1px solid var(--sky-light); margin-bottom: 0.35rem; }
+  .eddm-route-row { display: flex; align-items: center; justify-content: space-between; padding: 0.35rem 0; border-bottom: 1px solid var(--sky-light); }
   .eddm-route-row:last-child { border-bottom: none; }
-  .eddm-route-row label { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.92rem; color: var(--text); flex: 1; }
-  .eddm-route-row input { accent-color: var(--accent); width: 15px; height: 15px; }
-  .eddm-route-pieces { font-family: 'Oswald', sans-serif; font-size: 0.72rem; color: var(--text-soft); letter-spacing: 0.05em; }
-  .eddm-totals { background: var(--navy); color: var(--white); padding: 1.5rem; }
-  .eddm-total-row { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(168,207,224,0.2); font-size: 0.95rem; color: var(--sky-light); }
-  .eddm-total-row.total { border-bottom: none; margin-top: 0.5rem; padding-top: 0.75rem; border-top: 2px solid var(--sky); }
-  .eddm-total-row.total span { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 900; color: var(--white); }
-  .eddm-disclaimer { font-size: 0.78rem; font-style: italic; color: var(--rule); margin-top: 1rem; line-height: 1.5; }
-  .eddm-contact { margin-top: 1.5rem; }
+  .eddm-checkbox-label { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.9rem; color: var(--text); flex: 1; }
+  .eddm-checkbox-label input { accent-color: var(--accent); width: 15px; height: 15px; }
+  .eddm-route-pieces { font-family: 'Oswald', sans-serif; font-size: 0.7rem; color: var(--text-soft); }
+
+  /* Totals bar */
+  .eddm-totals-bar { background: var(--navy); padding: 1.5rem; margin-bottom: 1.5rem; }
+  .eddm-totals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+  .eddm-total-item { text-align: center; }
+  .eddm-total-label { display: block; font-family: 'Oswald', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sky); margin-bottom: 0.3rem; }
+  .eddm-total-val { display: block; font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--white); }
+  .eddm-total-item.total .eddm-total-label { color: var(--sky-light); }
+  .eddm-total-item.total .eddm-total-val { font-size: 1.6rem; color: var(--sky); }
+  .eddm-disclaimer { font-size: 0.78rem; font-style: italic; color: var(--rule); line-height: 1.5; text-align: center; border-top: 1px solid rgba(168,207,224,0.2); padding-top: 0.75rem; }
+
+  .eddm-contact { margin-top: 0.5rem; }
   .eddm-sizes-info { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--sky); }
   .eddm-sizes-info h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--navy); margin-bottom: 0.5rem; }
   .eddm-sizes-info p { font-size: 0.9rem; color: var(--text-soft); margin-bottom: 1rem; font-style: italic; }
@@ -463,7 +484,9 @@
   .eddm-size-item span { font-size: 0.82rem; color: var(--text-soft); }
 
   @media (max-width: 640px) {
-    .eddm-calculator { grid-template-columns: 1fr; }
+    .eddm-options-row { grid-template-columns: 1fr 1fr; }
+    .eddm-clear-wrap { grid-column: 1 / -1; }
+    .eddm-accordion { grid-template-columns: 1fr; }
     .guidelines-grid { grid-template-columns: 1fr; }
     .shipping-grid { grid-template-columns: 1fr 1fr; }
   }
@@ -496,11 +519,10 @@
 <!-- STICKY NAV -->
 <nav class="sticky-nav" id="sticky-nav">
   <ul>
-    <li><a href="#services">Services</a></li>
     <li><a href="#services">Get a Quote</a></li>
     <li><a href="#eddm">EDDM</a></li>
     <li><a href="#faq">FAQ</a></li>
-    <li><a href="#file-guidelines">File Guidelines</a></li>
+    <li><a href="#file-guidelines">File Tips</a></li>
     <li><a href="#shipping">Shipping</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -1122,89 +1144,78 @@
   <div class="info-inner">
     <div class="divider"><span class="divider-text">Every Door Direct Mail</span></div>
     <h2 class="section-heading reveal">EDDM Mailers</h2>
-    <p class="section-sub reveal">Reach every door in your community. We handle printing, bundling, paperwork, and post office delivery — you just approve the design.</p>
+    <p class="section-sub reveal">Reach every door in your community. Select routes from one or more cities — we handle printing, bundling, paperwork, and post office delivery.</p>
 
     <div class="eddm-how reveal">
-      <div class="eddm-step"><span class="eddm-num">1</span><p>Select your city and routes below</p></div>
+      <div class="eddm-step"><span class="eddm-num">1</span><p>Select routes from any city below</p></div>
       <div class="eddm-step"><span class="eddm-num">2</span><p>Choose your mailer size and stock</p></div>
       <div class="eddm-step"><span class="eddm-num">3</span><p>We print, bundle, and deliver to the post office</p></div>
       <div class="eddm-step"><span class="eddm-num">4</span><p>USPS delivers to every selected door</p></div>
     </div>
 
-    <div class="eddm-calculator reveal">
-      <div class="eddm-col">
-        <div class="form-group">
-          <label>Select City</label>
-          <select id="eddm-city" onchange="updateEddmRoutes()">
-            <option value="">-- Choose a city --</option>
-            <option value="delight">Delight (71940)</option>
-            <option value="murfreesboro">Murfreesboro (71958)</option>
-            <option value="glenwood">Glenwood (71943)</option>
-            <option value="nashville">Nashville (71852)</option>
-            <option value="prescott">Prescott (71857)</option>
-            <option value="hope">Hope (71801)</option>
-            <option value="arkadelphia">Arkadelphia (71923)</option>
-          </select>
-        </div>
-
-        <div id="eddm-routes-wrap" style="display:none">
-          <label class="eddm-routes-label">Select Routes</label>
-          <div class="eddm-select-all-wrap">
-            <label class="eddm-checkbox-label">
-              <input type="checkbox" id="eddm-select-all" onchange="toggleAllRoutes(this)">
-              <span>Select All Routes</span>
-            </label>
-          </div>
-          <div id="eddm-routes-list"></div>
-        </div>
+    <!-- OPTIONS ROW -->
+    <div class="eddm-options-row reveal">
+      <div class="form-group">
+        <label>Mailer Size</label>
+        <select id="eddm-size" onchange="updateEddmTotals()">
+          <option value="6.25x9">6.25×9 — Budget Friendly</option>
+          <option value="6.5x9">6.5×9 — Compact</option>
+          <option value="6.25x11">6.25×11 — Popular for Real Estate</option>
+          <option value="6.5x12">6.5×12 — Longer Format</option>
+          <option value="8.5x11" selected>8.5×11 — Standard Letter</option>
+          <option value="9x12">9×12 — High Impact</option>
+        </select>
       </div>
-
-      <div class="eddm-col">
-        <div class="form-group">
-          <label>Mailer Size</label>
-          <select id="eddm-size">
-            <option value="6.25x9">6.25×9 — Budget Friendly</option>
-            <option value="6.5x9">6.5×9 — Compact</option>
-            <option value="6.25x11">6.25×11 — Popular for Real Estate</option>
-            <option value="6.5x12">6.5×12 — Longer Format</option>
-            <option value="8.5x11" selected>8.5×11 — Standard Letter</option>
-            <option value="9x12">9×12 — High Impact</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Stock</label>
-          <select id="eddm-stock">
-            <option value="c1s">C1S Gloss (Full Color)</option>
-            <option value="vellum">Vellum Bristol (B&W — Budget)</option>
-          </select>
-        </div>
-
-        <div class="eddm-totals" id="eddm-totals" style="display:none">
-          <div class="eddm-total-row">
-            <span>Total Pieces</span>
-            <span id="eddm-pieces">0</span>
-          </div>
-          <div class="eddm-total-row">
-            <span>Printing Estimate</span>
-            <span id="eddm-print-cost">$0.00</span>
-          </div>
-          <div class="eddm-total-row">
-            <span>USPS Postage</span>
-            <span id="eddm-postage">$0.00</span>
-          </div>
-          <div class="eddm-total-row">
-            <span>Handling Fee</span>
-            <span id="eddm-handling">$150.00</span>
-          </div>
-          <div class="eddm-total-row total">
-            <span>Estimated Total</span>
-            <span id="eddm-total">$0.00</span>
-          </div>
-          <p class="eddm-disclaimer">Estimate includes printing, bundling, paperwork & post office delivery. Final price confirmed before printing begins. USPS postage rate: $0.234/piece.</p>
-        </div>
+      <div class="form-group">
+        <label>Stock</label>
+        <select id="eddm-stock" onchange="updateEddmTotals()">
+          <option value="c1s">C1S Gloss (Full Color)</option>
+          <option value="vellum">Vellum Bristol (B&W — Budget)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Sides</label>
+        <select id="eddm-sides" onchange="updateEddmTotals()">
+          <option value="2" selected>2-Sided</option>
+          <option value="1">1-Sided</option>
+        </select>
+      </div>
+      <div class="eddm-clear-wrap">
+        <button class="btn btn-secondary" onclick="clearAllEddmRoutes()" style="font-size:0.7rem;padding:0.5rem 1rem;">Clear All</button>
       </div>
     </div>
 
+    <!-- CITY ACCORDION -->
+    <div class="eddm-accordion reveal" id="eddm-accordion"></div>
+
+    <!-- TOTALS -->
+    <div class="eddm-totals-bar" id="eddm-totals" style="display:none">
+      <div class="eddm-totals-grid">
+        <div class="eddm-total-item">
+          <span class="eddm-total-label">Total Pieces</span>
+          <span class="eddm-total-val" id="eddm-pieces">0</span>
+        </div>
+        <div class="eddm-total-item">
+          <span class="eddm-total-label">Printing</span>
+          <span class="eddm-total-val" id="eddm-print-cost">$0.00</span>
+        </div>
+        <div class="eddm-total-item">
+          <span class="eddm-total-label">USPS Postage</span>
+          <span class="eddm-total-val" id="eddm-postage">$0.00</span>
+        </div>
+        <div class="eddm-total-item">
+          <span class="eddm-total-label">Handling</span>
+          <span class="eddm-total-val" id="eddm-handling">$0.00</span>
+        </div>
+        <div class="eddm-total-item total">
+          <span class="eddm-total-label">Estimated Total</span>
+          <span class="eddm-total-val" id="eddm-total">$0.00</span>
+        </div>
+      </div>
+      <p class="eddm-disclaimer">Estimate includes printing, bundling, paperwork & post office delivery. Final price confirmed before printing begins. USPS postage: $0.234/piece.</p>
+    </div>
+
+    <!-- CONTACT FORM -->
     <div id="eddm-contact-wrap" style="display:none" class="eddm-contact">
       <div class="form-divider"><span>Request Your EDDM Quote</span></div>
       <form id="eddm-form" action="https://formspree.io/f/xkovyekk" method="POST">
@@ -1779,6 +1790,36 @@ const EDDM_ROUTES = {
     { id:'R003', label:'Route R003', pieces:577 },
     { id:'R004', label:'Route R004', pieces:409 },
     { id:'R005', label:'Route R005', pieces:631 }
+  ],
+  langley: [
+    { id:'H072', label:'Route H072', pieces:33 },
+    { id:'PBOX', label:'PO Boxes', pieces:22 }
+  ],
+  antoine: [
+    { id:'PBOX', label:'PO Boxes', pieces:60 }
+  ],
+  kirby: [
+    { id:'H071', label:'Route H071', pieces:319 },
+    { id:'PBOX', label:'PO Boxes', pieces:121 }
+  ],
+  mccaskill: [
+    { id:'PBOX', label:'PO Boxes', pieces:14 },
+    { id:'R001', label:'Route R001', pieces:268 }
+  ],
+  okolona: [
+    { id:'PBOX', label:'PO Boxes', pieces:31 },
+    { id:'R020', label:'Route R020', pieces:348 }
+  ],
+  amity: [
+    { id:'PBOX', label:'PO Boxes', pieces:147 },
+    { id:'R021', label:'Route R021', pieces:507 },
+    { id:'R022', label:'Route R022', pieces:206 },
+    { id:'R023', label:'Route R023', pieces:570 },
+    { id:'R024', label:'Route R024', pieces:383 }
+  ],
+  newhope: [
+    { id:'H072', label:'Route H072', pieces:256 },
+    { id:'PBOX', label:'PO Boxes', pieces:67 }
   ]
 };
 
@@ -1794,7 +1835,166 @@ function getEddmHandling(pieces) {
   return 150;
 }
 
-function updateEddmRoutes() {
+// City display names
+const EDDM_CITY_NAMES = {
+  delight: 'Delight', murfreesboro: 'Murfreesboro', glenwood: 'Glenwood',
+  nashville: 'Nashville', prescott: 'Prescott', hope: 'Hope',
+  arkadelphia: 'Arkadelphia', langley: 'Langley', antoine: 'Antoine',
+  kirby: 'Kirby', mccaskill: 'McCaskill', okolona: 'Okolona',
+  amity: 'Amity', newhope: 'New Hope'
+};
+
+const EDDM_CITY_ZIPS = {
+  delight:'71940', murfreesboro:'71958', glenwood:'71943', nashville:'71852',
+  prescott:'71857', hope:'71801', arkadelphia:'71923', langley:'71952',
+  antoine:'71922', kirby:'71950', mccaskill:'71847', okolona:'71962',
+  amity:'71921', newhope:'71959'
+};
+
+// Build accordion on page load
+function buildEddmAccordion() {
+  const accordion = document.getElementById('eddm-accordion');
+  if (!accordion) return;
+
+  accordion.innerHTML = Object.keys(EDDM_ROUTES).map(cityKey => {
+    const routes = EDDM_ROUTES[cityKey];
+    const totalPieces = routes.reduce((sum, r) => sum + r.pieces, 0);
+    const cityName = EDDM_CITY_NAMES[cityKey];
+    const zip = EDDM_CITY_ZIPS[cityKey];
+
+    return `
+      <div class="eddm-city-block" id="city-block-${cityKey}">
+        <button class="eddm-city-header" onclick="toggleEddmCity('${cityKey}')">
+          <div>
+            <div class="eddm-city-name">${cityName}</div>
+            <div class="eddm-city-meta">${zip} · ${totalPieces.toLocaleString()} total pieces</div>
+          </div>
+          <span class="eddm-city-toggle" id="toggle-${cityKey}">▼</span>
+        </button>
+        <div class="eddm-city-routes" id="routes-${cityKey}">
+          <div class="eddm-city-select-all">
+            <label class="eddm-checkbox-label">
+              <input type="checkbox" class="eddm-city-all" data-city="${cityKey}" onchange="toggleCityAll('${cityKey}', this)">
+              <span>Select All — ${cityName}</span>
+            </label>
+          </div>
+          ${routes.map(r => `
+            <div class="eddm-route-row">
+              <label class="eddm-checkbox-label">
+                <input type="checkbox" class="eddm-route-cb" data-city="${cityKey}" data-route="${r.id}" data-pieces="${r.pieces}" data-label="${cityName} ${r.label}" onchange="updateEddmTotals()">
+                <span>${r.label}</span>
+              </label>
+              <span class="eddm-route-pieces">${r.pieces.toLocaleString()} pieces</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function toggleEddmCity(cityKey) {
+  const routes = document.getElementById('routes-' + cityKey);
+  const toggle = document.getElementById('toggle-' + cityKey);
+  const isOpen = routes.classList.contains('open');
+  routes.classList.toggle('open', !isOpen);
+  toggle.classList.toggle('open', !isOpen);
+}
+
+function toggleCityAll(cityKey, masterCb) {
+  document.querySelectorAll(`.eddm-route-cb[data-city="${cityKey}"]`)
+    .forEach(cb => { cb.checked = masterCb.checked; });
+  updateEddmTotals();
+}
+
+function clearAllEddmRoutes() {
+  document.querySelectorAll('.eddm-route-cb, .eddm-city-all').forEach(cb => cb.checked = false);
+  document.querySelectorAll('.eddm-city-header').forEach(h => h.classList.remove('has-selection'));
+  updateEddmTotals();
+}
+
+function updateEddmTotals() {
+  const checked     = document.querySelectorAll('.eddm-route-cb:checked');
+  const totals      = document.getElementById('eddm-totals');
+  const contactWrap = document.getElementById('eddm-contact-wrap');
+
+  // Update city header highlights
+  Object.keys(EDDM_ROUTES).forEach(cityKey => {
+    const cityChecked = document.querySelectorAll(`.eddm-route-cb[data-city="${cityKey}"]:checked`).length > 0;
+    const header = document.querySelector(`#city-block-${cityKey} .eddm-city-header`);
+    if (header) header.classList.toggle('has-selection', cityChecked);
+  });
+
+  if (checked.length === 0) {
+    totals.style.display = 'none';
+    contactWrap.style.display = 'none';
+    return;
+  }
+
+  let totalPieces = 0;
+  checked.forEach(cb => totalPieces += parseInt(cb.dataset.pieces));
+
+  const stock    = document.getElementById('eddm-stock').value;
+  const size     = document.getElementById('eddm-size').value;
+  const sides    = parseInt(document.getElementById('eddm-sides').value);
+  const markup   = getEddmMarkup(totalPieces);
+  const handling = getEddmHandling(totalPieces);
+
+  const sizeUpcharge = {
+    '6.25x9':1.00, '6.5x9':1.00, '6.25x11':1.03,
+    '6.5x12':1.03, '8.5x11':1.06, '9x12':1.09
+  }[size] || 1.00;
+
+  const paperCostPerPiece = stock === 'c1s' ? (0.14025 / 2) : (0.10 / 2);
+  const clickCostPerPiece = (stock === 'c1s' ? 0.07 : 0.015) * sides;
+  const costPerPiece  = paperCostPerPiece + clickCostPerPiece;
+  const totalCost     = totalPieces * costPerPiece;
+  const printPrice    = totalCost * markup * sizeUpcharge;
+  const postage       = totalPieces * 0.234;
+  const grandTotal    = printPrice + postage + handling;
+
+  document.getElementById('eddm-pieces').textContent    = totalPieces.toLocaleString();
+  document.getElementById('eddm-print-cost').textContent = '$' + printPrice.toFixed(2);
+  document.getElementById('eddm-postage').textContent   = '$' + postage.toFixed(2);
+  document.getElementById('eddm-handling').textContent  = '$' + handling.toFixed(2);
+  document.getElementById('eddm-total').textContent     = '$' + grandTotal.toFixed(2);
+  totals.style.display = 'block';
+  contactWrap.style.display = 'block';
+
+  // Build details string grouped by city
+  const cityGroups = {};
+  checked.forEach(cb => {
+    const city = cb.dataset.city;
+    if (!cityGroups[city]) cityGroups[city] = [];
+    cityGroups[city].push(`${cb.dataset.label} (${cb.dataset.pieces} pcs)`);
+  });
+  const detailStr = Object.entries(cityGroups)
+    .map(([city, routes]) => `${EDDM_CITY_NAMES[city]}: ${routes.join(', ')}`)
+    .join(' | ');
+
+  document.getElementById('eddm-hid-details').value  = `Size: ${size} | Stock: ${stock} | Sides: ${sides} | ${detailStr} | Total Pieces: ${totalPieces}`;
+  document.getElementById('eddm-hid-estimate').value = `Print: $${printPrice.toFixed(2)} + Postage: $${postage.toFixed(2)} + Handling: $${handling} = Total: $${grandTotal.toFixed(2)}`;
+}
+
+// EDDM form submit
+document.getElementById('eddm-form') && document.getElementById('eddm-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('[type="submit"]');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  try {
+    const res = await fetch(this.action, { method:'POST', body: new FormData(this), headers:{'Accept':'application/json'} });
+    if (res.ok) { this.style.display = 'none'; document.getElementById('eddm-success').classList.add('show'); }
+    else { btn.textContent = 'Error — Please Call Us'; btn.disabled = false; }
+  } catch { btn.textContent = 'Error — Please Call Us'; btn.disabled = false; }
+});
+
+// Build accordion on load
+buildEddmAccordion();
+</script>
+</body>
+</html>
+
   const city = document.getElementById('eddm-city').value;
   const wrap = document.getElementById('eddm-routes-wrap');
   const list = document.getElementById('eddm-routes-list');
