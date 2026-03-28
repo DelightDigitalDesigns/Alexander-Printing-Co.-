@@ -1943,7 +1943,15 @@ function updateEddmTotals() {
   const size     = document.getElementById('eddm-size').value;
   const sides    = parseInt(document.getElementById('eddm-sides').value);
   const markup   = getEddmMarkup(totalPieces);
-  const handling = getEddmHandling(totalPieces);
+
+  // Count unique cities selected
+  const citiesSelected = new Set();
+  checked.forEach(cb => citiesSelected.add(cb.dataset.city));
+  const numCities = citiesSelected.size;
+
+  // Handling fee + $55 per additional zip code
+  const baseHandling = getEddmHandling(totalPieces);
+  const handling = baseHandling + (Math.max(0, numCities - 1) * 55);
 
   const sizeUpcharge = {
     '6.25x9':1.00, '6.5x9':1.00, '6.25x11':1.03,
@@ -1961,7 +1969,10 @@ function updateEddmTotals() {
   document.getElementById('eddm-pieces').textContent    = totalPieces.toLocaleString();
   document.getElementById('eddm-print-cost').textContent = '$' + printPrice.toFixed(2);
   document.getElementById('eddm-postage').textContent   = '$' + postage.toFixed(2);
-  document.getElementById('eddm-handling').textContent  = '$' + handling.toFixed(2);
+  const handlingLabel = numCities > 1
+    ? `$${baseHandling} + ${numCities - 1}×$55`
+    : `$${baseHandling}`;
+  document.getElementById('eddm-handling').textContent  = handlingLabel;
   document.getElementById('eddm-total').textContent     = '$' + grandTotal.toFixed(2);
   totals.style.display = 'block';
   contactWrap.style.display = 'block';
