@@ -385,6 +385,12 @@
   }
   .sticky-nav ul li a:hover { color: var(--white); background: rgba(168,207,224,0.08); }
   .sticky-nav ul li a.active { color: var(--sky); border-bottom: 2px solid var(--sky); }
+  .sticky-nav ul li a.nav-upload {
+    color: var(--sky);
+    background: rgba(168,207,224,0.1);
+    font-weight: 500;
+  }
+  .sticky-nav ul li a.nav-upload:hover { background: rgba(168,207,224,0.22); color: var(--white); }
 
   /* ── INFO SECTIONS (FAQ, Guidelines, Shipping, EDDM) ── */
   .info-section { padding: 4rem 2rem; }
@@ -419,6 +425,39 @@
   .guideline-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
   .guideline-card p { font-size: 0.92rem; line-height: 1.7; color: var(--text-soft); }
   .guidelines-note { text-align: center; font-style: italic; color: var(--text-soft); font-size: 1rem; margin-top: 2rem; padding: 1rem; border-top: 1px solid var(--sky); }
+
+  /* UPLOAD CTA BOX */
+  .upload-cta-box {
+    background: var(--navy);
+    border: 1px solid var(--sky);
+    padding: 2rem 2rem;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .upload-cta-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--white); margin-bottom: 0.4rem;
+  }
+  .upload-cta-text p {
+    font-size: 0.92rem; color: var(--sky-light);
+    font-style: italic; line-height: 1.5;
+  }
+  .upload-cta-btn {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase;
+    background: var(--sky); color: var(--navy-deep);
+    padding: 0.75rem 2rem; text-decoration: none;
+    font-weight: 500; white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+  .upload-cta-btn:hover { background: var(--white); }
 
   /* SHIPPING */
   .shipping-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
@@ -489,6 +528,7 @@
     .eddm-accordion { grid-template-columns: 1fr; }
     .guidelines-grid { grid-template-columns: 1fr; }
     .shipping-grid { grid-template-columns: 1fr 1fr; }
+    .upload-cta-box { flex-direction: column; text-align: center; }
   }
 
   /* ANIMATIONS */
@@ -525,6 +565,7 @@
     <li><a href="#file-guidelines">File Tips</a></li>
     <li><a href="#shipping">Shipping</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="https://www.dropbox.com/request/Mau5o0ExijpyhNze1ZKS" target="_blank" class="nav-upload">📎 Submit Files</a></li>
   </ul>
 </nav>
 
@@ -615,6 +656,18 @@
       <h3>Custom Print</h3>
       <p>Don't see what you need? We've been solving printing problems for 100 years. Just ask.</p>
       <span class="card-cta">Send an Inquiry →</span>
+    </a>
+    <a class="service-card reveal" href="#quote-panel" onclick="selectFromCard('scratchpads')">
+      <span class="service-icon">📝</span>
+      <h3>Scratch Pads</h3>
+      <p>Custom printed scratch pads in multiple sizes — color or black & white.</p>
+      <span class="card-cta">Get a Quote →</span>
+    </a>
+    <a class="service-card reveal" href="#quote-panel" onclick="selectFromCard('ncr')">
+      <span class="service-icon">🗒️</span>
+      <h3>Carbonless Forms</h3>
+      <p>NCR forms in 2, 3, 4 & 5 part — multiple sizes, loose sets or numbered.</p>
+      <span class="card-cta">Get a Quote →</span>
     </a>
   </div>
 
@@ -835,6 +888,78 @@
           </div>
         </div>
       </div>
+
+      <!-- Scratch Pads -->
+      <div id="opts-scratchpads" class="product-opts" style="display:none">
+        <div class="panel-title">Scratch Pads</div>
+        <div class="panel-sub">Custom printed scratch pads — 50 sheets per pad, chipboard backing.</div>
+        <div class="form-row">
+          <div class="form-group"><label>Pad Size</label>
+            <select id="sp-size">
+              <option value="3.25x3.25">3.25×3.25</option>
+              <option value="4.25x5.5">4.25×5.5</option>
+              <option value="5.5x8.5" selected>5.5×8.5</option>
+              <option value="8.5x11">8.5×11</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Print Color</label>
+            <select id="sp-color">
+              <option value="color">Full Color</option>
+              <option value="bw">Black & White</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Quantity (number of pads)</label>
+            <input type="number" id="sp-qty" value="100" min="1" max="5000">
+          </div>
+        </div>
+      </div>
+
+      <!-- NCR Carbonless Forms -->
+      <div id="opts-ncr" class="product-opts" style="display:none">
+        <div class="panel-title">Carbonless Forms (NCR)</div>
+        <div class="panel-sub">Loose sets — estimated pricing, we'll confirm before printing.</div>
+        <div class="form-row">
+          <div class="form-group"><label>Form Size</label>
+            <select id="ncr-size">
+              <option value="8.5x11">8.5×11</option>
+              <option value="8.5x14">8.5×14</option>
+              <option value="5.5x8.5" selected>5.5×8.5</option>
+              <option value="4.25x5.5">4.25×5.5</option>
+              <option value="4.25x7">4.25×7</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Parts</label>
+            <select id="ncr-parts">
+              <option value="2">2-Part (White/Yellow)</option>
+              <option value="3">3-Part (White/Yellow/Pink)</option>
+              <option value="4">4-Part</option>
+              <option value="5">5-Part</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Quantity (sets, min 100)</label>
+            <input type="number" id="ncr-qty" value="250" min="100" max="10000">
+          </div>
+          <div class="form-group"><label>Print Color</label>
+            <select id="ncr-color">
+              <option value="bw">Black & White</option>
+              <option value="color">Full Color</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group"><label>Options</label>
+            <select id="ncr-numbering">
+              <option value="no">No Numbering</option>
+              <option value="yes">Sequential Numbering (+$15)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
       <!-- Custom Print -->
       <div id="opts-custom" class="product-opts" style="display:none">
         <div class="panel-title">Custom Print Inquiry</div>
@@ -1089,6 +1214,15 @@
 
     </div>
 
+    <!-- DROPBOX UPLOAD CTA -->
+    <div class="upload-cta-box reveal">
+      <div class="upload-cta-text">
+        <h3>📎 Ready to Send Your File?</h3>
+        <p>Upload your print file directly. No account needed — just click, select your file, and submit. Reference your name when prompted so we can match it to your order.</p>
+      </div>
+      <a href="https://www.dropbox.com/request/Mau5o0ExijpyhNze1ZKS" target="_blank" class="upload-cta-btn">Upload Your File →</a>
+    </div>
+
     <p class="guidelines-note reveal">Not sure if your file is ready? Send it over anyway and we'll take a look. After 100 years we've helped a lot of people get print-ready.</p>
   </div>
 </section>
@@ -1259,6 +1393,7 @@
 
   </div>
 </section>
+
 <!-- PHONE CTA -->
 <section class="phone-cta-section" id="contact">
   <h2 class="reveal">Prefer to Call?</h2>
@@ -1289,32 +1424,25 @@ const RC_PRICES = {
 };
 
 const ENV_PRICES = {
-  // #10 & #9 share same prices — keyed by: size_security_window_seal
-  // size: 10 or 9, security: 0/1, window: 0/1, seal: 0/1
-  '10_0_0_0': { bw:{500:66,1000:116,1500:157,2000:194,2500:224},   color:{500:115,1000:199,1500:272,2000:337,2500:389} }, // #10 Regular
-  '10_1_0_0': { bw:{500:68,1000:121,1500:163,2000:202,2500:233},   color:{500:116,1000:206,1500:279,2000:345,2500:398} }, // #10 Security
-  '10_0_0_1': { bw:{500:106,1000:187,1500:253,2000:314,2500:362},  color:{500:154,1000:272,1500:369,2000:456,2500:527} }, // #10 Peel&Seal
-  '10_0_1_0': { bw:{500:72,1000:128,1500:173,2000:214,2500:247},   color:{500:120,1000:213,1500:289,2000:357,2500:412} }, // #10 Window
-  '10_1_1_0': { bw:{500:76,1000:134,1500:182,2000:225,2500:260},   color:{500:124,1000:219,1500:297,2000:368,2500:425} }, // #10 Window Security
-  '10_0_1_1': { bw:{500:92,1000:183,1500:274,2000:365,2500:455},   color:{500:140,1000:279,1500:418,2000:557,2500:697} }, // #10 Window P&S
-  // #10 Linen
+  '10_0_0_0': { bw:{500:66,1000:116,1500:157,2000:194,2500:224},   color:{500:115,1000:199,1500:272,2000:337,2500:389} },
+  '10_1_0_0': { bw:{500:68,1000:121,1500:163,2000:202,2500:233},   color:{500:116,1000:206,1500:279,2000:345,2500:398} },
+  '10_0_0_1': { bw:{500:106,1000:187,1500:253,2000:314,2500:362},  color:{500:154,1000:272,1500:369,2000:456,2500:527} },
+  '10_0_1_0': { bw:{500:72,1000:128,1500:173,2000:214,2500:247},   color:{500:120,1000:213,1500:289,2000:357,2500:412} },
+  '10_1_1_0': { bw:{500:76,1000:134,1500:182,2000:225,2500:260},   color:{500:124,1000:219,1500:297,2000:368,2500:425} },
+  '10_0_1_1': { bw:{500:92,1000:183,1500:274,2000:365,2500:455},   color:{500:140,1000:279,1500:418,2000:557,2500:697} },
   '10linen':  { bw:{500:138,1000:244,1500:330,2000:409,2500:471},  color:{500:186,1000:329,1500:446,2000:552,2500:637} },
-  // #9 same prices as #10 for matching combos
-  '9_0_0_0':  { bw:{500:66,1000:116,1500:157,2000:194,2500:224},   color:{500:115,1000:199,1500:272,2000:337,2500:389} }, // #9 Regular
-  '9_1_0_0':  { bw:{500:68,1000:121,1500:163,2000:202,2500:233},   color:{500:116,1000:206,1500:279,2000:345,2500:398} }, // #9 Security
-  '9_0_1_0':  { bw:{500:72,1000:128,1500:173,2000:214,2500:247},   color:{500:120,1000:213,1500:289,2000:357,2500:412} }, // #9 Window
-  // 6¾
+  '9_0_0_0':  { bw:{500:66,1000:116,1500:157,2000:194,2500:224},   color:{500:115,1000:199,1500:272,2000:337,2500:389} },
+  '9_1_0_0':  { bw:{500:68,1000:121,1500:163,2000:202,2500:233},   color:{500:116,1000:206,1500:279,2000:345,2500:398} },
+  '9_0_1_0':  { bw:{500:72,1000:128,1500:173,2000:214,2500:247},   color:{500:120,1000:213,1500:289,2000:357,2500:412} },
   '634':      { bw:{500:65,1000:115,1500:156,2000:194,2500:224},   color:{500:113,1000:201,1500:272,2000:337,2500:389} },
-  // Greeting
   'a7':       { bw:{10:4,25:8,50:12,100:18,250:43},   color:{10:6,25:13,50:19,100:28,250:67} },
   'a7plus':   { bw:{10:6,25:13,50:20,100:29,250:67},  color:{10:8,25:17,50:27,100:39,250:93} }
 };
 
-// Unavailable combinations: window=1 + security=1 + peel&seal=1
 function isEnvUnavailable(size, security, window, seal) {
-  if (size === '9' && seal === '1') return true;           // no P&S for #9
-  if (size === '9' && security === '1' && window === '1') return true; // no window security for #9
-  if (security === '1' && window === '1' && seal === '1') return true; // no window+security+P&S
+  if (size === '9' && seal === '1') return true;
+  if (size === '9' && security === '1' && window === '1') return true;
+  if (security === '1' && window === '1' && seal === '1') return true;
   return false;
 }
 
@@ -1339,7 +1467,7 @@ function updateEnvOptions() {
     sealRow.style.display = 'none';
   } else if (size === '9') {
     optRow.style.display = 'grid';
-    sealRow.style.display = 'none'; // no P&S for #9
+    sealRow.style.display = 'none';
     secGroup.style.display = 'flex';
     winGroup.style.display = 'flex';
   } else {
@@ -1384,8 +1512,6 @@ function updateGreetQty() {
   sel.selectedIndex = 2;
 }
 
-
-
 const PAPER_COST = { '40':26.25,'50':26.50,'60':34.25,'60ivory':55.00,'80':65.00,'c1s':140.25,'c2s':190.00 };
 const THICKNESS  = { '40':0.002947,'50':0.0037,'60':0.0049,'60ivory':0.0049,'80':0.006 };
 const TRIM_TABLE = { 0.1:12,0.2:10,0.3:8,0.4:7,0.5:6,0.6:5,0.7:4,0.8:4,0.9:3,1.0:3,1.1:3,1.2:3,1.3:2,1.4:2,1.5:2,1.6:2,1.7:2 };
@@ -1398,16 +1524,12 @@ function getMarkup(qty) {
   return 2.2;
 }
 
-// ── STATE ─────────────────────────────────────────────────────────
 let currentProduct = null;
 
-// ── SELECT FROM SERVICE CARD ──────────────────────────────────────
 function selectFromCard(product) {
   currentProduct = product;
-  // Show the quote panel
   const quotePanel = document.getElementById('quote-panel');
   quotePanel.style.display = 'block';
-  // Show correct opts
   document.querySelectorAll('.product-opts').forEach(o => o.style.display = 'none');
   const opts = document.getElementById('opts-' + product);
   if (opts) opts.style.display = 'block';
@@ -1415,17 +1537,13 @@ function selectFromCard(product) {
   updateEnvOptions();
   updateGreetQty();
   goToPanel(1);
-  // Highlight selected card
   document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
-  // Scroll to panel smoothly
   setTimeout(() => {
     quotePanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 50);
 }
 
-// ── NAVIGATION ────────────────────────────────────────────────────
 function goToPanel(n) {
-  // n=1 → panel2 (options), n=2 → panel3 (quote)
   const panels = [document.getElementById('panel2'), document.getElementById('panel3')];
   panels.forEach((p, i) => { if(p) p.classList.toggle('active', i === n-1); });
   document.querySelectorAll('.step').forEach((s, i) => {
@@ -1439,7 +1557,6 @@ function goBack() {
   goToPanel(1);
 }
 
-// ── PRODUCT SELECTION (legacy - kept for any remaining references) ─
 function selectProduct(id) {
   selectFromCard(id);
 }
@@ -1467,11 +1584,9 @@ function goToContactDirect() {
   document.getElementById('estimate-note').textContent = isEDDM
     ? "EDDM pricing varies by route and quantity. We'll get back to you promptly."
     : "Tell us about your project below and we'll get back to you with a price.";
-  document.getElementById('toggle-btn') && (document.getElementById('toggle-btn').style.display = 'none');
   goToPanel(2);
 }
 
-// ── CALCULATE ─────────────────────────────────────────────────────
 function calculateQuote() {
   let price = 0, note = '', specs = '', breakdownHTML = '', isRange = false, showBreakdown = false;
 
@@ -1547,21 +1662,11 @@ function calculateQuote() {
     const markup         = getMarkup(qty);
     const lowPrice       = totalCost * (markup - 0.15);
     const highPrice      = totalCost * (markup + 0.15);
-    isRange = true; showBreakdown = true;
+    isRange = true;
     const sizeLabel  = size==='5585'?'5.5×8.5':size==='69'?'6×9':'8.5×11';
     const stockLabel = {'40':'40#','50':'50#','60':'60#','60ivory':'60# Ivory','80':'80# Semi Gloss'}[stock];
     specs = `Paperback Books — Size: ${sizeLabel}, Pages: ${pages}, Qty: ${qty}, Stock: ${stockLabel}`;
     note  = `${qty} books · ${pages} pages · ${sizeLabel} · ${stockLabel} · Spine: ${thick}"`;
-    breakdownHTML = `
-      <div class="breakdown-row"><span>Interior clicks</span><span>$${interiorClicks.toFixed(2)}</span></div>
-      <div class="breakdown-row"><span>Cover clicks</span><span>$${coverClicks.toFixed(2)}</span></div>
-      <div class="breakdown-row"><span>Interior paper</span><span>$${interiorPaper.toFixed(2)}</span></div>
-      <div class="breakdown-row"><span>Cover paper</span><span>$${coverPaper.toFixed(2)}</span></div>
-      <div class="breakdown-row"><span>Setup labor</span><span>$${setupLabor.toFixed(2)}</span></div>
-      <div class="breakdown-row"><span>Binding labor</span><span>$${runLabor.toFixed(2)}</span></div>
-      <div class="breakdown-row"><span>Glue</span><span>$${glue.toFixed(2)}</span></div>
-      <div class="breakdown-row"><span>Trimming</span><span>$${trimLabor.toFixed(2)}</span></div>
-      <div class="breakdown-row" style="font-weight:bold;border-top:1px solid var(--sky);padding-top:0.4rem;margin-top:0.2rem"><span>Est. cost basis</span><span>$${totalCost.toFixed(2)}</span></div>`;
     document.getElementById('estimate-price').textContent = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
     document.getElementById('hid-estimate').value = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
 
@@ -1573,13 +1678,11 @@ function calculateQuote() {
 
     if (qty < 24) { alert('Minimum quantity for invitations is 24.'); return; }
 
-    // Up counts per size per stock
     const upCount = {
       'c1s':  { '4x6': 9, '5x7': 6, '6x9': 4 },
       'c2s':  { '4x6': 9, '5x7': 6, '6x9': 4 },
       'linen':{ '4x6': 4, '5x7': 4, '6x9': 3 }
     };
-
     const paperCostPerSheet = { 'c1s': 0.14025, 'c2s': 0.19, 'linen': 0.48 };
 
     function getInvMarkup(q) {
@@ -1591,8 +1694,6 @@ function calculateQuote() {
     }
 
     const floorPrice = 45;
-
-    // Calculate C1S price first (used as base for linen)
     const c1sUp     = upCount['c1s'][size];
     const c1sSheets = Math.ceil(qty / c1sUp);
     const c1sCost   = (c1sSheets * paperCostPerSheet['c1s']) + (c1sSheets * sides * 0.07);
@@ -1600,10 +1701,8 @@ function calculateQuote() {
 
     let calcPrice;
     if (stock === 'linen') {
-      // Linen = 1.5× C1S price
       calcPrice = c1sPrice * 1.5;
     } else {
-      // C1S or C2S — calculate normally
       const up       = upCount[stock][size];
       const sheets   = Math.ceil(qty / up);
       const cost     = (sheets * paperCostPerSheet[stock]) + (sheets * sides * 0.07);
@@ -1618,7 +1717,6 @@ function calculateQuote() {
     const stockLabel = { 'c1s':'C1S Gloss', 'c2s':'C2S Gloss', 'linen':'Linen (Premium)' }[stock];
     specs = `Invitations — Size: ${sizeLabel}, Qty: ${qty}, Stock: ${stockLabel}, ${sides===1?'1-Sided':'2-Sided'}`;
     note  = `${qty} invitations · ${sizeLabel} · ${stockLabel} · ${sides===1?'1-sided':'2-sided'}`;
-
     document.getElementById('estimate-price').textContent = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
     document.getElementById('hid-estimate').value = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
 
@@ -1640,17 +1738,86 @@ function calculateQuote() {
     const markup         = getMarkup(qty);
     const lowPrice       = totalCost * (markup - 0.15);
     const highPrice      = totalCost * (markup + 0.15);
-    isRange = true; showBreakdown = true;
+    isRange = true;
     const sizeLabel  = size==='5585'?'5.5×8.5':'8.5×11';
     const stockLabel = {'40':'40#','50':'50#','60':'60#','60ivory':'60# Ivory','80':'80# Semi Gloss'}[stock];
     specs = `Saddle Stitch — Size: ${sizeLabel}, Pages: ${pages}, Qty: ${qty}, Stock: ${stockLabel}`;
     note  = `${qty} booklets · ${pages} pages · ${sizeLabel} · ${stockLabel}`;
-    breakdownHTML = `
-      <div class="breakdown-row"><span>Interior clicks</span><span>$${interiorClicks.toFixed(2)}</span></div>
-      <div class="breakdown-row"><span>Cover clicks</span><span>$${coverClicks.toFixed(2)}</span></div>
-      <div class="breakdown-row"><span>Interior paper</span><span>$${interiorPaper.toFixed(2)}</span></div>
-      <div class="breakdown-row"><span>Cover paper</span><span>$${coverPaper.toFixed(2)}</span></div>
-      <div class="breakdown-row" style="font-weight:bold;border-top:1px solid var(--sky);padding-top:0.4rem;margin-top:0.2rem"><span>Est. cost basis</span><span>$${totalCost.toFixed(2)}</span></div>`;
+    document.getElementById('estimate-price').textContent = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
+    document.getElementById('hid-estimate').value = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
+
+  } else if (currentProduct === 'scratchpads') {
+    const size   = document.getElementById('sp-size').value;
+    const color  = document.getElementById('sp-color').value;
+    const qty    = parseInt(document.getElementById('sp-qty').value);
+    if (qty < 1) { alert('Please enter a valid quantity.'); return; }
+    const upCount = { '3.25x3.25': 15, '4.25x5.5': 8, '5.5x8.5': 4, '8.5x11': 2 };
+    const up = upCount[size];
+    const sheetsPerPad  = 50;
+    const printSheets   = Math.ceil((qty * sheetsPerPad) / up);
+    const paperCost = printSheets * 0.03425;
+    const bwClickCost    = printSheets * 0.006;
+    const colorClickCost = color === 'color' ? printSheets * 0.07 : 0;
+    const chipboardCost = qty * (0.25 / up);
+    const laborCost = qty * 0.04;
+    const totalCost = paperCost + bwClickCost + colorClickCost + chipboardCost + laborCost;
+    function getSPMarkup(q) {
+      if (q <= 400)  return 2.35;
+      if (q <= 800)  return 2.30;
+      if (q <= 1600) return 2.25;
+      return 2.0;
+    }
+    const calcPrice = totalCost * getSPMarkup(qty);
+    const lowPrice  = calcPrice * 0.92;
+    const highPrice = calcPrice * 1.08;
+    isRange = true;
+    const sizeLabel  = size.replace('x', '×');
+    const colorLabel = color === 'color' ? 'Full Color' : 'Black & White';
+    specs = `Scratch Pads — Size: ${sizeLabel}, ${colorLabel}, Qty: ${qty} pads`;
+    note  = `${qty} pads · ${sizeLabel} · 50 sheets/pad · ${colorLabel}`;
+    document.getElementById('estimate-price').textContent = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
+    document.getElementById('hid-estimate').value = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
+
+  } else if (currentProduct === 'ncr') {
+    const size      = document.getElementById('ncr-size').value;
+    const parts     = parseInt(document.getElementById('ncr-parts').value);
+    const qty       = parseInt(document.getElementById('ncr-qty').value);
+    const color     = document.getElementById('ncr-color').value;
+    const numbering = document.getElementById('ncr-numbering').value;
+    if (qty < 100) { alert('Minimum quantity is 100 sets.'); return; }
+    if (parts === 5 && size === '8.5x14') { alert('5-part is not available in 8.5×14.'); return; }
+    const setCost = {
+      '8.5x11':  { 2: 0.0825,  3: 0.1275,  4: 0.1875,  5: 0.25 },
+      '8.5x14':  { 2: 0.0825,  3: 0.1275,  4: 0.1875,  5: null },
+      '5.5x8.5': { 2: 0.04125, 3: 0.06375, 4: 0.09375, 5: 0.125 },
+      '4.25x5.5':{ 2: 0.020625,3: 0.031875,4: 0.046875,5: 0.0625 },
+      '4.25x7':  { 2: 0.04125, 3: 0.06375, 4: 0.09375, 5: 0.125 }
+    };
+    const upCount = { '8.5x11': 2, '8.5x14': 2, '5.5x8.5': 4, '4.25x5.5': 8, '4.25x7': 4 };
+    const stockCostPerSet = setCost[size][parts];
+    const up = upCount[size];
+    const printSheets = Math.ceil(qty / up);
+    const bwClicks    = printSheets * 0.006;
+    const colorClicks = color === 'color' ? printSheets * 0.07 : 0;
+    const totalClicks = bwClicks + colorClicks;
+    const stockCost = qty * stockCostPerSet;
+    const totalCost = stockCost + totalClicks;
+    function getNCRMarkup(q) {
+      if (q <= 250)  return 8.0;
+      if (q <= 500)  return 4.5;
+      if (q <= 1000) return 3.5;
+      return 3.0;
+    }
+    let calcPrice = totalCost * getNCRMarkup(qty);
+    if (numbering === 'yes') calcPrice += 15;
+    const lowPrice  = calcPrice * 0.92;
+    const highPrice = calcPrice * 1.08;
+    isRange = true;
+    const sizeLabel  = size.replace('x', '×');
+    const colorLabel = color === 'color' ? 'Full Color' : 'B&W';
+    const numLabel   = numbering === 'yes' ? ' · Numbered' : '';
+    specs = `NCR Forms — Size: ${sizeLabel}, ${parts}-Part, ${colorLabel}, Qty: ${qty} sets${numLabel}`;
+    note  = `${qty} sets · ${sizeLabel} · ${parts}-part · ${colorLabel}${numLabel}`;
     document.getElementById('estimate-price').textContent = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
     document.getElementById('hid-estimate').value = `$${lowPrice.toFixed(2)} – $${highPrice.toFixed(2)}`;
   }
@@ -1664,7 +1831,6 @@ function calculateQuote() {
   document.getElementById('hid-product').value = currentProduct.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
   document.getElementById('hid-specs').value = specs;
   document.getElementById('estimate-box').classList.add('visible');
-
   goToPanel(2);
 }
 
@@ -1695,7 +1861,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // ── STICKY NAV ACTIVE STATE ───────────────────────────────────────
 const navLinks = document.querySelectorAll('.sticky-nav a');
-const sections = ['services','get-a-quote','eddm','faq','file-guidelines','shipping','contact'];
+const sections = ['services','eddm','faq','file-guidelines','shipping','contact'];
 
 window.addEventListener('scroll', () => {
   let current = '';
@@ -1716,12 +1882,10 @@ updateGreetQty();
 function toggleFaq(btn) {
   const answer = btn.nextElementSibling;
   const isOpen = btn.classList.contains('open');
-  // Close all
   document.querySelectorAll('.faq-q').forEach(b => {
     b.classList.remove('open');
     b.nextElementSibling.classList.remove('open');
   });
-  // Open clicked if it was closed
   if (!isOpen) {
     btn.classList.add('open');
     answer.classList.add('open');
@@ -1840,7 +2004,6 @@ function getEddmHandling(pieces) {
   return 150;
 }
 
-// City display names
 const EDDM_CITY_NAMES = {
   delight: 'Delight', murfreesboro: 'Murfreesboro', glenwood: 'Glenwood',
   nashville: 'Nashville', prescott: 'Prescott', hope: 'Hope',
@@ -1856,17 +2019,14 @@ const EDDM_CITY_ZIPS = {
   amity:'71921', newhope:'71959'
 };
 
-// Build accordion on page load
 function buildEddmAccordion() {
   const accordion = document.getElementById('eddm-accordion');
   if (!accordion) return;
-
   accordion.innerHTML = Object.keys(EDDM_ROUTES).map(cityKey => {
     const routes = EDDM_ROUTES[cityKey];
     const totalPieces = routes.reduce((sum, r) => sum + r.pieces, 0);
     const cityName = EDDM_CITY_NAMES[cityKey];
     const zip = EDDM_CITY_ZIPS[cityKey];
-
     return `
       <div class="eddm-city-block" id="city-block-${cityKey}">
         <button class="eddm-city-header" onclick="toggleEddmCity('${cityKey}')">
@@ -1923,7 +2083,6 @@ function updateEddmTotals() {
   const totals      = document.getElementById('eddm-totals');
   const contactWrap = document.getElementById('eddm-contact-wrap');
 
-  // Update city header highlights
   Object.keys(EDDM_ROUTES).forEach(cityKey => {
     const cityChecked = document.querySelectorAll(`.eddm-route-cb[data-city="${cityKey}"]:checked`).length > 0;
     const header = document.querySelector(`#city-block-${cityKey} .eddm-city-header`);
@@ -1944,12 +2103,10 @@ function updateEddmTotals() {
   const sides    = parseInt(document.getElementById('eddm-sides').value);
   const markup   = getEddmMarkup(totalPieces);
 
-  // Count unique cities selected
   const citiesSelected = new Set();
   checked.forEach(cb => citiesSelected.add(cb.dataset.city));
   const numCities = citiesSelected.size;
 
-  // Handling fee + $55 per additional zip code
   const baseHandling = getEddmHandling(totalPieces);
   const handling = baseHandling + (Math.max(0, numCities - 1) * 55);
 
@@ -1977,7 +2134,6 @@ function updateEddmTotals() {
   totals.style.display = 'block';
   contactWrap.style.display = 'block';
 
-  // Build details string grouped by city
   const cityGroups = {};
   checked.forEach(cb => {
     const city = cb.dataset.city;
@@ -1992,7 +2148,6 @@ function updateEddmTotals() {
   document.getElementById('eddm-hid-estimate').value = `Print: $${printPrice.toFixed(2)} + Postage: $${postage.toFixed(2)} + Handling: $${handling} = Total: $${grandTotal.toFixed(2)}`;
 }
 
-// EDDM form submit
 document.getElementById('eddm-form') && document.getElementById('eddm-form').addEventListener('submit', async function(e) {
   e.preventDefault();
   const btn = this.querySelector('[type="submit"]');
@@ -2000,125 +2155,13 @@ document.getElementById('eddm-form') && document.getElementById('eddm-form').add
   btn.disabled = true;
   try {
     const res = await fetch(this.action, { method:'POST', body: new FormData(this), headers:{'Accept':'application/json'} });
-    const data = await res.json(); if (data.success) { this.style.display = 'none'; document.getElementById('eddm-success').classList.add('show'); }
+    const data = await res.json();
+    if (data.success) { this.style.display = 'none'; document.getElementById('eddm-success').classList.add('show'); }
     else { btn.textContent = 'Error — Please Call Us'; btn.disabled = false; }
   } catch { btn.textContent = 'Error — Please Call Us'; btn.disabled = false; }
 });
 
-// Build accordion on load
 buildEddmAccordion();
-</script>
-</body>
-</html>
-
-  const city = document.getElementById('eddm-city').value;
-  const wrap = document.getElementById('eddm-routes-wrap');
-  const list = document.getElementById('eddm-routes-list');
-  const totals = document.getElementById('eddm-totals');
-  const contactWrap = document.getElementById('eddm-contact-wrap');
-
-  if (!city) { wrap.style.display = 'none'; totals.style.display = 'none'; return; }
-
-  const routes = EDDM_ROUTES[city];
-  wrap.style.display = 'block';
-  document.getElementById('eddm-select-all').checked = false;
-
-  list.innerHTML = routes.map(r => `
-    <div class="eddm-route-row">
-      <label class="eddm-checkbox-label">
-        <input type="checkbox" class="eddm-route-cb" data-pieces="${r.pieces}" onchange="updateEddmTotals()">
-        <span>${r.label}</span>
-      </label>
-      <span class="eddm-route-pieces">${r.pieces.toLocaleString()} pieces</span>
-    </div>
-  `).join('');
-
-  totals.style.display = 'none';
-  contactWrap.style.display = 'none';
-  updateEddmTotals();
-}
-
-function toggleAllRoutes(masterCb) {
-  document.querySelectorAll('.eddm-route-cb').forEach(cb => cb.checked = masterCb.checked);
-  updateEddmTotals();
-}
-
-function updateEddmTotals() {
-  const checked = document.querySelectorAll('.eddm-route-cb:checked');
-  const totals  = document.getElementById('eddm-totals');
-  const contactWrap = document.getElementById('eddm-contact-wrap');
-
-  if (checked.length === 0) {
-    totals.style.display = 'none';
-    contactWrap.style.display = 'none';
-    return;
-  }
-
-  let totalPieces = 0;
-  checked.forEach(cb => totalPieces += parseInt(cb.dataset.pieces));
-
-  const stock      = document.getElementById('eddm-stock').value;
-  const size       = document.getElementById('eddm-size').value;
-  const markup     = getEddmMarkup(totalPieces);
-  const handling   = getEddmHandling(totalPieces);
-
-  // Size upcharge
-  const sizeUpcharge = {
-    '6.25x9': 1.00, '6.5x9': 1.00,
-    '6.25x11': 1.03, '6.5x12': 1.03,
-    '8.5x11': 1.06,
-    '9x12': 1.09
-  }[size] || 1.00;
-
-  // Paper cost per PRINTED piece (2-up means each piece uses half a sheet)
-  const paperCostPerPiece = stock === 'c1s'
-    ? (0.14025 / 2)
-    : (0.10 / 2);
-
-  // Click cost per piece (1 side)
-  const clickCostPerPiece = stock === 'c1s' ? 0.07 : 0.015;
-
-  const costPerPiece  = paperCostPerPiece + clickCostPerPiece;
-  const totalCost     = totalPieces * costPerPiece;
-  const printPrice    = totalCost * markup * sizeUpcharge;
-  const postage       = totalPieces * 0.26;
-  const grandTotal    = printPrice + postage + handling;
-
-  document.getElementById('eddm-pieces').textContent   = totalPieces.toLocaleString();
-  document.getElementById('eddm-print-cost').textContent = '$' + printPrice.toFixed(2);
-  document.getElementById('eddm-postage').textContent  = '$' + postage.toFixed(2);
-  document.getElementById('eddm-handling').textContent = '$' + handling.toFixed(2);
-  document.getElementById('eddm-total').textContent    = '$' + grandTotal.toFixed(2);
-  totals.style.display = 'block';
-  contactWrap.style.display = 'block';
-
-  // Build hidden fields
-  const city = document.getElementById('eddm-city').value;
-  const selectedRoutes = Array.from(checked).map(cb => cb.closest('.eddm-route-row').querySelector('span:first-of-type').textContent).join(', ');
-  document.getElementById('eddm-hid-details').value = `City: ${city} | Size: ${size} | Stock: ${stock} | Routes: ${selectedRoutes} | Pieces: ${totalPieces}`;
-  document.getElementById('eddm-hid-estimate').value = `Print: $${printPrice.toFixed(2)} + Postage: $${postage.toFixed(2)} + Handling: $${handling} = Total: $${grandTotal.toFixed(2)}`;
-}
-
-// Update EDDM totals when size/stock changes
-document.addEventListener('DOMContentLoaded', function() {
-  const eddmSize  = document.getElementById('eddm-size');
-  const eddmStock = document.getElementById('eddm-stock');
-  if (eddmSize)  eddmSize.addEventListener('change', updateEddmTotals);
-  if (eddmStock) eddmStock.addEventListener('change', updateEddmTotals);
-});
-
-// EDDM form submit
-document.getElementById('eddm-form') && document.getElementById('eddm-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const btn = this.querySelector('[type="submit"]');
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-  try {
-    const res = await fetch(this.action, { method:'POST', body: new FormData(this), headers:{'Accept':'application/json'} });
-    const data = await res.json(); if (data.success) { this.style.display = 'none'; document.getElementById('eddm-success').classList.add('show'); }
-    else { btn.textContent = 'Error — Please Call Us'; btn.disabled = false; }
-  } catch { btn.textContent = 'Error — Please Call Us'; btn.disabled = false; }
-});
 </script>
 </body>
 </html>
